@@ -11,11 +11,11 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import weka.core.converters.ConverterUtils.DataSource;
+
+
 public class LoadSaveData {
 	public static void main(String args[]) throws Exception{
 		
-/*		DataSource source = new DataSource("./ArffSamples/diabetes.arff");
-		Instances dataset = source.getDataSet();*/
 		String filePath = "./ArffSamples/iris.arff";
 		Instances dataset = new Instances(new BufferedReader(new FileReader(filePath))); // <<--alternate means of retrieval-->> to be tested later
 		
