@@ -12,7 +12,7 @@ public class CSVtoArff {
 	public static void main(String args[]) throws Exception{
 		//Load CSV
 		CSVLoader loader = new CSVLoader();
-		loader.setSource(new File("/CSVsamples/weather.numeric.csv"));
+		loader.setSource(new File("./CSVsamples/weather.numeric.csv"));
 		Instances data = loader.getDataSet();
 		
 		//save ARFF
@@ -21,7 +21,7 @@ public class CSVtoArff {
 		
 		//save as ARFF
 
-		saver.setFile(new File("/ArffSamples/weather.numeric.arff"));
+		saver.setFile(new File("./ArffSamples/weather.numeric.arff"));
 		saver.writeBatch();
 	}
 

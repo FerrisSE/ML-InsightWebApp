@@ -12,7 +12,7 @@ public class ARFFtoCSV {
 	public static void main(String args[]) throws Exception{
 		//Load ARFF
 		ArffLoader loader = new ArffLoader();
-		loader.setSource(new File("/CSVsamples/diabetes.arff"));
+		loader.setSource(new File("./ArffSamples/diabetes.arff"));
 		Instances data = loader.getDataSet();
 		
 		//save CSV
@@ -21,7 +21,7 @@ public class ARFFtoCSV {
 		
 		//save as CSV
 
-		saver.setFile(new File("/ArffSamples/diabetes.csv"));
+		saver.setFile(new File("./CSVsamples/diabetes.csv"));
 		saver.writeBatch();
 	}
 
