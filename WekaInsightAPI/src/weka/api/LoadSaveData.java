@@ -16,7 +16,7 @@ import weka.core.converters.ConverterUtils.DataSource;
 public class LoadSaveData {
 	public static void main(String args[]) throws Exception{
 		
-		String filePath = "./ArffSamples/iris.arff";
+		String filePath = "./ArffSamples/iris3.arff";
 		Instances dataset = new Instances(new BufferedReader(new FileReader(filePath))); // <<--alternate means of retrieval-->> to be tested later
 		
 		System.out.println(dataset.toSummaryString());
@@ -33,7 +33,7 @@ public class LoadSaveData {
 		if(exists == false) {
      		try {
      			if(i<1) {
-				saver.setFile(new File("./ArffSamples/iris.arff"));
+				saver.setFile(new File("./ArffSamples/iris3.arff"));
 	    		saver.writeBatch();
      			}else {
     				saver.setFile(new File("./ArffSamples/iris("+i+").arff"));
