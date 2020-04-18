@@ -33,6 +33,6 @@
       </li>
     </ul>
 
-    <div id="content-wrapper">
+    <div id="content-wrapper"  style="background-image: url('https://login.ferris.edu/authenticationendpoint/images/body_image.png');">
 
   

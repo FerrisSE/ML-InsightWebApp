@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import service.ArticleService;
+import weka.api.ClassifyInstance;
 
 @Path("/articles")
 public class ArticlesAPI {
@@ -22,9 +23,13 @@ public class ArticlesAPI {
 	public String listArticles() {
 		System.out.println("Testing...");
 			JSONArray articles = ArticleService.listArticles();
-			
+		//JSONArray articles = ClassifyInstance	
+		
+		
 			return articles.toString();
+		
 	}	
+	
 	@POST
 	@Path("/update/")
 	@Produces("application/JSON")
@@ -62,6 +67,28 @@ public class ArticlesAPI {
 		}
 		
 		return "addArticleAPI failed";
+
+	}	
+	
+	@GET
+	@Path("/result/")
+	@Produces("application/JSON")
+	@Consumes("application/JSON")
+	public String getResult(){
+
+		try {
+			//JSONObject result = new JSONObject(ClassifyInstance.getTestResult());
+			String result = ClassifyInstance.getTestResult();
+			return result;
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("WekaAPI ClassifyInstance failed");
+			e.printStackTrace();
+			return "WekaAPI ClassifyInstance failed";
+		}
+		
+
 
 	}	
 

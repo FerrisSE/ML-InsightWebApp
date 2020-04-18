@@ -7,7 +7,7 @@ $(document).ready(function(){
 function listArticles(){
 	
 	$.ajax({
-		url: "../WekaInsightAPI/rest/articles/list/",
+		url: "../WekaInsightAPI/rest/articles/result/",
 		type: 'GET',
 		dataType : "json",
         contentType: "application/json",
@@ -18,26 +18,32 @@ function listArticles(){
 
     	$.each(response, function(key, value) {
     		
-    		var lstResults = "<tr><td>"+value.articleID+"</td><td>"+value.articleAuthorID+"</td><td>"+value.articleTitle+"</td><td>"+value.articleContent+"</td></tr>";
+    //		var lstResults = "<tr><td>"+value.testID+"</td><td>"+value.userID+"</td><td>"+value.testTitle+"</td><td>"+value.testResult+"</td></tr>";
+    		var lstResults = "<tr><td>"+value.testResult+"</td></tr>";
        		
+    		
+
+	
     		document.getElementById('postBody').innerHTML += lstResults;
     	});
 	});
 }	
-function addArticle(){
-	var articleTitle = $("#articleTitle").val();
-	var categoryID = $("#categoryID").val();
-	var articleAuthorID = $("#articleAuthorID").val();
-	var articleContent = $("#articleContent").val();
+
+function getResult(){
+	var testTitle = $("#testTitle").val();
+//	var categoryID = $("#categoryID").val();
+//	var userID = $("#userID").val();
+	var testResult = $("#testResult").val();
 	
-	var parms = { articleTitle:articleTitle, categoryID:categoryID, articleAuthorID:articleAuthorID, articleContent:articleContent}
-	
+//	var parms = { testTitle:testTitle, categoryID:categoryID, userID:userID, testResult:testResult}
+	var parms = { testTitle:testTitle, testResult:testResult}
+	var result = ClassifyInstance.getTestResult;
 	$.ajax({
-		url: "../SENG315FinalProjectAPIs/rest/articles/add/",
-		type: 'POST',
+		url: "../WekaInsightAPI/rest/articles/result/",
+		type: 'GET',
 		dataType : "json",
         contentType: "application/json",
-        data: JSON.stringify(parms)
+        data: JSON.stringify(result)
 	}).fail(function(response) {
 		console.log(JSON.stringify(response));
 
@@ -45,4 +51,4 @@ function addArticle(){
 
     	alert(response.message);
 	});
-}	
+}

@@ -10,14 +10,29 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-import weka.core.converters.ConverterUtils.DataSource;
+import javax.swing.JFrame;
 
+import FileAccess.Display;
+import weka.core.converters.ConverterUtils.DataSource;
+import FileAccess.Display;
 
 public class LoadSaveData {
 	public static void main(String args[]) throws Exception{
 		
 		String filePath = "./ArffSamples/iris.arff";
-		Instances dataset = new Instances(new BufferedReader(new FileReader(filePath))); // <<--alternate means of retrieval-->> to be tested later
+//		Instances dataset = new Instances(new BufferedReader(new FileReader(filePath))); // <<--alternate means of retrieval-->> to be tested later
+		
+        JFrame frame = new JFrame("My GUI");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(new Display());
+        frame.pack();
+        frame.setVisible(true);
+		
+		File file = Display.getFile();
+		
+		Instances dataset = new Instances(new BufferedReader(new FileReader(file))); // <<--alternate means of retrieval-->> to be tested later
+
+		
 		
 		System.out.println(dataset.toSummaryString());
 		

@@ -8,11 +8,13 @@ import java.util.Date;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import weka.api.ClassifyInstance;
+
 public class Article {
-	int articleID;
-	int articleAuthorID;
-	String articleTitle;
-	String articleContent;
+	int testID;
+	int userID;
+	String testTitle;
+	String testResult;
 	Date articleCreateDate;
 	int articleVisible;
 	int categoryID;
@@ -20,11 +22,11 @@ public class Article {
 	public Article() {
 		
 	}
-	public Article(int articleID, int articleAuthorID, String articleTitle, String articleContent) {
-		this.articleID = articleID;
-		this.articleAuthorID = articleAuthorID;
-		this.articleTitle = articleTitle;
-		this.articleContent = articleContent;
+	public Article(int testID, int userID, String testTitle, String testResult) {
+		this.testID = testID;
+		this.userID = userID;
+		this.testTitle = testTitle;
+		this.testResult = testResult;
 
 		
 	}
@@ -37,27 +39,28 @@ public class Article {
 			
 			MSSQLConnection mssqlConnection = new MSSQLConnection();
 			Connection connection = mssqlConnection.getConnection();
-			Statement stmt = connection.createStatement(
+		Statement stmt = connection.createStatement(
 					java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE, java.sql.ResultSet.CONCUR_READ_ONLY);
 			
 			String articlesQuery = "SELECT * " +
 			  		"FROM SENG315FinalProjectAdmin.dbo.articles WITH (NOLOCK) ";
 			
 				java.sql.ResultSet articlesResults = stmt.executeQuery(articlesQuery);
-	
+			
+						
 				while(articlesResults.next()){
 					
 					articleJSONObject = new JSONObject();
 					
-					String articleID = articlesResults.getString("articleID").trim();
-					String articleAuthorID = articlesResults.getString("articleAuthorID").trim();
-					String articleTitle = articlesResults.getString("articleTitle").trim();
-					String articleContent = articlesResults.getString("articleContent").trim();
+					String testID = articlesResults.getString("testID").trim();
+					String userID = articlesResults.getString("userID").trim();
+					String testTitle = articlesResults.getString("testTitle").trim();
+					String testResult = articlesResults.getString("testResult").trim();
 
-					articleJSONObject.put("articleID",articleID);
-					articleJSONObject.put("articleAuthorID",articleAuthorID);
-					articleJSONObject.put("articleTitle",articleTitle);
-					articleJSONObject.put("articleContent",articleContent);
+					articleJSONObject.put("testID",testID);
+					articleJSONObject.put("userID",userID);
+					articleJSONObject.put("testTitle",testTitle);
+					articleJSONObject.put("testResult",testResult);
 					
 					articlesJSONArray.put(articleJSONObject	);
 					
@@ -76,6 +79,15 @@ public class Article {
 		return articlesJSONArray;
 	}
 	
+	
+	/*
+	public String listArticles() throws Exception{
+		String testResult = ClassifyInstance.getTestResult();
+		System.out.println(testResult);
+		return testResult;
+	}
+	*/
+	
 	public String updateArticle() {
 		String message = "Article Updated";
 	try {	
@@ -83,11 +95,11 @@ public class Article {
 		Connection connection = mssqlConnection.getConnection();
 		
 		String updateArticle = "UPDATE SENG315FinalProjectAdmin.dbo.articles SET " +
-				"articleTitle=IsNull(Nullif(?,''), articleTitle), articleContent=IsNull(Nullif(?,''),articleContent) " +
-				"WHERE articleID="+articleID+"";
+				"testTitle=IsNull(Nullif(?,''), testTitle), testResult=IsNull(Nullif(?,''),testResult) " +
+				"WHERE testID="+testID+"";
 		PreparedStatement ps = connection.prepareStatement(updateArticle);
-		ps.setString(1, articleTitle);
-		ps.setString(2, articleContent);
+		ps.setString(1, testTitle);
+		ps.setString(2, testResult);
 		ps.executeUpdate();
 		
     	try { if (ps!= null) ps.close(); } catch (Exception e) {};
@@ -113,7 +125,7 @@ public class Article {
 			
 			String articlesQuery = "SELECT * " +
 			  		"FROM SENG315FinalProjectAdmin.dbo.articles WITH (NOLOCK) " + 
-					"WHERE article = "+articleID+"";
+					"WHERE article = "+testID+"";
 			
 				java.sql.ResultSet articlesResults = stmt.executeQuery(articlesQuery);
 	
@@ -121,15 +133,15 @@ public class Article {
 					
 					articleJSONObject = new JSONObject();
 					
-					String articleID = articlesResults.getString("articleID").trim();
-					String articleAuthorID = articlesResults.getString("articleAuthorID").trim();
-					String articleTitle = articlesResults.getString("articleTitle").trim();
-					String articleContent = articlesResults.getString("articleContent").trim();
+					String testID = articlesResults.getString("testID").trim();
+					String userID = articlesResults.getString("userID").trim();
+					String testTitle = articlesResults.getString("testTitle").trim();
+					String testResult = articlesResults.getString("testResult").trim();
 
-					articleJSONObject.put("articleID",articleID);
-					articleJSONObject.put("articleAuthorID",articleAuthorID);
-					articleJSONObject.put("articleTitle",articleTitle);
-					articleJSONObject.put("articleContent",articleContent);
+					articleJSONObject.put("testID",testID);
+					articleJSONObject.put("userID",userID);
+					articleJSONObject.put("testTitle",testTitle);
+					articleJSONObject.put("testResult",testResult);
 					
 
 					
@@ -155,15 +167,15 @@ public class Article {
 		Connection connection = mssqlConnection.getConnection();
 		
 		String addArticle = "INSERT SENG315FinalProjectAdmin.dbo.articles " +
-				"(articleAuthorID, articleTitle, articleContent, articleCreateDate, articleVisible, categoryID) VALUES (?,?,?,?,?,?)";
-		
+				"(userID, testTitle, testResult, articleCreateDate, articleVisible, categoryID) VALUES (?,?,?,?,?,?)";
+
 		PreparedStatement ps = connection.prepareStatement(addArticle);
 		
 		Date date = new Date();
 		
-		ps.setInt(1, articleAuthorID);
-		ps.setString(2, articleTitle);
-		ps.setString(3, articleContent);
+		ps.setInt(1, userID);
+		ps.setString(2, testTitle);
+		ps.setString(3, testResult);
 		ps.setTimestamp(4, new java.sql.Timestamp(date.getTime()));
 		ps.setInt(5, articleVisible);
 		ps.setInt(6, categoryID);
@@ -183,36 +195,36 @@ public class Article {
 	}
 
 	
-	public int getArticleID() {
-		return articleID;
+	public int getTestID() {
+		return testID;
 	}
 
-	public void setArticleID(int articleID) {
-		this.articleID = articleID;
+	public void setTestID(int testID) {
+		this.testID = testID;
 	}
 
-	public int getArticleAuthorID() {
-		return articleAuthorID;
+	public int getUserID() {
+		return userID;
 	}
 
-	public void setArticleAuthorID(int articleAuthorID) {
-		this.articleAuthorID = articleAuthorID;
+	public void setUserID(int userID) {
+		this.userID = userID;
 	}
 
-	public String getArticleTitle() {
-		return articleTitle;
+	public String getTestTitle() {
+		return testTitle;
 	}
 
-	public void setArticleTitle(String articleTitle) {
-		this.articleTitle = articleTitle;
+	public void setTestTitle(String testTitle) {
+		this.testTitle = testTitle;
 	}
 
-	public String getArticleContent() {
-		return articleContent;
+	public String getTestResult() {
+		return testResult;
 	}
 
-	public void setArticleContent(String articleContent) {
-		this.articleContent = articleContent;
+	public void setTestResult(String testResult) {
+		this.testResult = testResult;
 	}
 	public Date getArticleCreateDate() {
 		return articleCreateDate;

@@ -6,6 +6,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import model.Article;
+import weka.api.ClassifyInstance;
 
 public class ArticleService {
 
@@ -17,6 +18,18 @@ public class ArticleService {
 		
 		return articles;
 	}
+	
+	/*
+	public static String listArticles() throws Exception{
+	//	JSONArray articles = new JSONArray();
+		
+	//	Article article = new Article();
+	//	articles = article.listArticles();
+		
+		return ClassifyInstance.getTestResult();
+	}
+	*/
+	
 	public static JSONObject updateArticle(){
 		
 		String message = " ";
@@ -25,9 +38,9 @@ public class ArticleService {
 			
 			try {
 				Article article =new Article();
-				article.setArticleID(1);
-				article.setArticleTitle("Test 8");
-				article.setArticleContent("");
+				article.setTestID(1);
+				article.setTestTitle("Test 8");
+				article.setTestResult("");
 				
 				message = article.updateArticle();
 			
@@ -42,7 +55,7 @@ public class ArticleService {
 		JSONObject articleJO = new JSONObject();
 		
 		Article article = new Article();
-		article.setArticleID(1);
+		article.setTestID(1);
 		
 		articleJO = article.getArticle();
 		
@@ -58,16 +71,16 @@ public class ArticleService {
 			
 			try {
 				
-				String articleTitle = inputParms.getString("articleTitle");
-				String articleContent = inputParms.getString("articleContent");
-				int articleAuthorID = inputParms.getInt("articleAuthorID");
+				String testTitle = inputParms.getString("testTitle");
+				String testResult = inputParms.getString("testResult");
+				int userID = inputParms.getInt("userID");
 				int categoryID = inputParms.getInt("categoryID");
 
 				
 				Article article =new Article();
-				article.setArticleTitle(articleTitle);
-				article.setArticleContent(articleContent);
-				article.setArticleAuthorID(articleAuthorID);
+				article.setTestTitle(testTitle);
+				article.setTestResult(testResult);
+				article.setUserID(userID);
 				article.setArticleVisible(1);
 				article.setCategoryID(categoryID);
 				
@@ -80,5 +93,7 @@ public class ArticleService {
 			}
 		return result;
 	}
+	
+
 
 }
