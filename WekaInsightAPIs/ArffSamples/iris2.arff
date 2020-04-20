@@ -1,0 +1,23 @@
+@relation Example.Sparse.Arff-weka.filters.unsupervised.instance.NonSparseToSparse-weka.filters.unsupervised.attribute.Discretize-V-B4-M-1.0-R1-3-precision6
+
+@attribute Att1 numeric
+@attribute Att2 numeric
+@attribute Att3 numeric
+@attribute Att4 {'\'(-inf-0.25]\'','\'(0.25-0.5]\'','\'(0.5-0.75]\'','\'(0.75-inf)\''}
+@attribute Att5 {'\'(-inf-0.25]\'','\'(0.25-0.5]\'','\'(0.5-0.75]\'','\'(0.75-inf)\''}
+@attribute Att6 {'\'All\''}
+@attribute Att7 {'\'(-inf-0.25]\'','\'(0.25-0.5]\'','\'(0.5-0.75]\'','\'(0.75-inf)\''}
+@attribute Att8 {'\'(-inf-0.25]\'','\'(0.25-0.5]\'','\'(0.5-0.75]\'','\'(0.75-inf)\''}
+@attribute Att9 {'\'(-inf-0.25]\'','\'(0.25-0.5]\'','\'(0.5-0.75]\'','\'(0.75-inf)\''}
+@attribute Att10 {'\'(-inf-0.25]\'','\'(0.25-0.5]\'','\'(0.5-0.75]\'','\'(0.75-inf)\''}
+@attribute class {'\'(-inf-1.79]\'','\'(1.79-2.26]\'','\'(2.26-2.73]\'','\'(2.73-inf)\''}
+
+@data
+{0 1,1 1,3 '\'(0.75-inf)\'',9 '\'(0.75-inf)\'',10 '\'(2.73-inf)\''}
+{6 '\'(0.75-inf)\'',7 '\'(0.75-inf)\'',10 '\'(1.79-2.26]\''}
+{4 '\'(0.75-inf)\'',10 '\'(1.79-2.26]\''}
+{6 '\'(0.75-inf)\''}
+{10 '\'(2.26-2.73]\''}
+{3 '\'(0.75-inf)\'',10 '\'(2.73-inf)\''}
+{4 '\'(0.75-inf)\'',8 '\'(0.75-inf)\'',10 '\'(1.79-2.26]\''}
+{0 1}
