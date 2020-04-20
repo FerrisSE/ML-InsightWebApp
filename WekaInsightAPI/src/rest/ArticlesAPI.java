@@ -70,15 +70,46 @@ public class ArticlesAPI {
 
 	}	
 	
+	
 	@GET
 	@Path("/result/")
-	@Produces("application/JSON")
-	@Consumes("application/JSON")
+	@Produces("text/plain")
+	@Consumes("text/plain")
+	public String getFile(){
+			System.out.println("get file being used");
+		try {
+			//JSONObject result = new JSONObject(ClassifyInstance.getTestResult());
+			String result = ClassifyInstance.getTestResult();
+			return result;
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("WekaAPI ClassifyInstance failed");
+			e.printStackTrace();
+			return "WekaAPI ClassifyInstance failed";
+		}
+		
+
+
+	}	
+
+
+	
+	
+	
+	@GET
+	@Path("/result/")
+	@Produces("String")
+	@Consumes("String")
 	public String getResult(){
 
 		try {
 			//JSONObject result = new JSONObject(ClassifyInstance.getTestResult());
 			String result = ClassifyInstance.getTestResult();
+			String results = "testResults:"+result+"";
+
+			//String result = ClassifyInstance.getTestResult();
+			System.out.println(result);
 			return result;
 
 		} catch (Exception e) {

@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 import model.Article;
 import weka.api.ClassifyInstance;
+import weka.api.LoadSaveData;
 
 public class ArticleService {
 
@@ -58,6 +59,16 @@ public class ArticleService {
 		article.setTestID(1);
 		
 		articleJO = article.getArticle();
+		
+		return articleJO;
+	}
+	
+	public static JSONObject getFile() {
+		JSONObject articleJO = new JSONObject();
+		
+		Article article = new Article();
+		article.setTestID(1);
+		articleJO =  article.getResult();
 		
 		return articleJO;
 	}

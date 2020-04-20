@@ -7,7 +7,7 @@ $(document).ready(function(){
 function listArticles(){
 	
 	$.ajax({
-		url: "../WekaInsightAPI/rest/articles/result/",
+		url: "../WekaInsightAPIs/rest/articles/list/",
 		type: 'GET',
 		dataType : "json",
         contentType: "application/json",
@@ -18,8 +18,8 @@ function listArticles(){
 
     	$.each(response, function(key, value) {
     		
-    //		var lstResults = "<tr><td>"+value.testID+"</td><td>"+value.userID+"</td><td>"+value.testTitle+"</td><td>"+value.testResult+"</td></tr>";
-    		var lstResults = "<tr><td>"+value.testResult+"</td></tr>";
+    		var lstResults = "<tr><td>"+value.testID+"</td><td>"+value.userID+"</td><td>"+value.testTitle+"</td><td>"+value.testResult+"</td></tr>";
+    		//var lstResults = "<tr><td>"+value.testResult+"</td></tr>";
        		
     		
 
@@ -29,7 +29,7 @@ function listArticles(){
 	});
 }	
 
-function getResult(){
+function getArticle(){
 	var testTitle = $("#testTitle").val();
 //	var categoryID = $("#categoryID").val();
 //	var userID = $("#userID").val();
@@ -39,16 +39,53 @@ function getResult(){
 	var parms = { testTitle:testTitle, testResult:testResult}
 	var result = ClassifyInstance.getTestResult;
 	$.ajax({
-		url: "../WekaInsightAPI/rest/articles/result/",
-		type: 'GET',
-		dataType : "json",
+		url: "../WekaInsightAPIs/rest/articles/result/",
+	//	type: 'GET',
+		dataType : "JSON",
         contentType: "application/json",
-        data: JSON.stringify(result)
 	}).fail(function(response) {
 		console.log(JSON.stringify(response));
 
     }).done(function(response){
-
+    //	$("#results").text(LoadSaveData());
     	alert(response.message);
+	});
+}
+
+function postFile(){
+	$.ajax({
+		url: "../WekaInsightAPIs/rest/articles/result/",
+		type: 'POST',
+		dataType : "text",
+        contentType: "text/plain",
+	}).fail(function(response) {
+		alert("There was a failure")
+		console.log(JSON.stringify(response));
+
+    }).done(function(response){
+    	alert("Starting to get response");
+    	$("#testResult").text(response);
+    	console.log(response);
+    	alert("Response received");
+
+	});
+}
+
+function getResult(){
+	$.ajax({
+		url: "../WekaInsightAPIs/rest/articles/result/",
+		type: 'GET',
+		dataType : "text",
+        contentType: "text/plain",
+	}).fail(function(response) {
+		alert("There was a failure")
+		console.log(JSON.stringify(response));
+
+    }).done(function(response){
+    	alert("Starting to get response");
+    	$("#testResult").text(response);
+    	console.log(response);
+    	alert("Response received");
+
 	});
 }

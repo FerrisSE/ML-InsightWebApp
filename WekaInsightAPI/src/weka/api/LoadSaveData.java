@@ -17,28 +17,38 @@ import weka.core.converters.ConverterUtils.DataSource;
 import FileAccess.Display;
 
 public class LoadSaveData {
-	public static void main(String args[]) throws Exception{
+	private static Instances dataset;
+	public static void main() throws Exception{
 		
-		String filePath = "./ArffSamples/iris.arff";
 //		Instances dataset = new Instances(new BufferedReader(new FileReader(filePath))); // <<--alternate means of retrieval-->> to be tested later
 		
         JFrame frame = new JFrame("My GUI");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(new Display());
         frame.pack();
-        frame.setVisible(true);
+      //  frame.setVisible(true);
 		
 		File file = Display.getFile();
 		
-		Instances dataset = new Instances(new BufferedReader(new FileReader(file))); // <<--alternate means of retrieval-->> to be tested later
+		 dataset = new Instances(new BufferedReader(new FileReader(file))); // <<--alternate means of retrieval-->> to be tested later
 
 		
 		
 		System.out.println(dataset.toSummaryString());
 		
-		ArffSaver saver = new ArffSaver();
-		saver.setInstances(dataset);
-		CheckIfExists(filePath, saver, 0);
+//		ArffSaver saver = new ArffSaver();
+//		saver.setInstances(dataset);
+//		CheckIfExists(filePath, saver, 0);
+	}
+	
+	public static String getResults() {
+		try {
+			main();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return dataset.toSummaryString();
 	}
 	
 	static boolean CheckIfExists(String filePath, ArffSaver saver,int i) {

@@ -1,14 +1,22 @@
 package model;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.Date;
 
+import javax.swing.JFrame;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import FileAccess.Display;
 import weka.api.ClassifyInstance;
+import weka.api.LoadSaveData;
+import weka.core.Instances;
 
 public class Article {
 	int testID;
@@ -22,13 +30,12 @@ public class Article {
 	public Article() {
 		
 	}
+	
 	public Article(int testID, int userID, String testTitle, String testResult) {
 		this.testID = testID;
 		this.userID = userID;
 		this.testTitle = testTitle;
 		this.testResult = testResult;
-
-		
 	}
 
 	public JSONArray listArticles() {
@@ -111,6 +118,36 @@ public class Article {
 	}
 	return message;
 	}
+	
+	public JSONObject getResult() {
+		System.out.println("In Article.JAVA getResult");
+				JSONObject articleJSONObject = new JSONObject();
+
+
+		try {
+			 	Instances dataset;			
+				
+		        JFrame frame = new JFrame("My GUI");
+		        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		        frame.getContentPane().add(new Display());
+		        frame.pack();
+	
+				File file = Display.getFile();
+				
+				 dataset = new Instances(new BufferedReader(new FileReader(file))); // <<--alternate means of retrieval-->> to be tested later
+
+					articleJSONObject.put("testResult",dataset.toSummaryString());
+				
+				System.out.println(dataset.toSummaryString());
+				
+					
+		} catch (Exception e) {
+		    System.out.println(e.getMessage());
+		}
+		
+		return articleJSONObject;
+	}
+	
 	
 	public JSONObject getArticle() {
 		

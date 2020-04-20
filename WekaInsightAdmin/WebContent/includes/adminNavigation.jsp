@@ -1,6 +1,6 @@
 
 
-  <div id="wrapper">
+  <div id="wrapper"style="background-image: url('https://login.ferris.edu/authenticationendpoint/images/body_image.png');">
 
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
@@ -33,6 +33,5 @@
       </li>
     </ul>
 
-    <div id="content-wrapper"  style="background-image: url('https://login.ferris.edu/authenticationendpoint/images/body_image.png');">
-
+ 
   
