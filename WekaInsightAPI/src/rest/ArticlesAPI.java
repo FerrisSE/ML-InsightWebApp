@@ -72,7 +72,7 @@ public class ArticlesAPI {
 	
 	
 	@GET
-	@Path("/result/")
+	@Path("/classify/")
 	@Produces("text/plain")
 	@Consumes("text/plain")
 	public String getFile(){

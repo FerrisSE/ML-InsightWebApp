@@ -15,6 +15,8 @@
 	<%@include file=".\includes\articleAdd.jsp" %>
 	<%}else if(view.equals("charts")){ %>
 	<%@include file=".\includes\charts.jsp" %>
+		<%}else if(view.equals("about")){ %>
+	<%@include file=".\includes\About.jsp" %>
 	<%}else{ %>
 	<%@include file=".\includes\dashboard.jsp" %>
 	<%} %>

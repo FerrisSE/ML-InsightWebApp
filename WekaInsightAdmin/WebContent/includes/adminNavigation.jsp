@@ -21,16 +21,17 @@
 
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="charts.jsp">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="">
+            <li class="nav-item">
+        <a class="nav-link" href="./index.jsp?view=about">
           <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
+          <span>About</span></a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./index.jsp?view=charts">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Contact us</span></a>
+      </li>
+
     </ul>
 
  
