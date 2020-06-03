@@ -1,9 +1,7 @@
 $(document).ready(function(){
 
 	//listArticles();
-	
-	listArticles();
-	
+		
 	view = getQueryStringVariable('view');
 	
 	if(view == 'articleedit'){
@@ -24,18 +22,68 @@ $(document).ready(function(){
 	}
 });
 
+function download_csv(csv, filename) {
+    var csvFile;
+    var downloadLink;
+
+    // CSV FILE
+    csvFile = new Blob([csv], {type: "text/csv"});
+
+    // Download link
+    downloadLink = document.createElement("a");
+
+    // File name
+    downloadLink.download = filename;
+
+    // We have to create a link to the file
+    downloadLink.href = window.URL.createObjectURL(csvFile);
+
+    // Make sure that the link is not displayed
+    downloadLink.style.display = "none";
+
+    // Add the link to your DOM
+    document.body.appendChild(downloadLink);
+
+    // Lanzamos
+    downloadLink.click();
+}
+
+function export_table_to_csv(html, filename) {
+	var csv = [];
+	var rows = document.querySelectorAll("table tr");
+	
+    for (var i = 0; i < rows.length; i++) {
+		var row = [], cols = rows[i].querySelectorAll("td, th");
+		
+        for (var j = 0; j < cols.length; j++) 
+            row.push(cols[j].innerText);
+        
+		csv.push(row.join(","));		
+	}
+
+    // Download CSV
+    download_csv(csv.join("\n"), filename);
+}
+
+document.querySelector("button").addEventListener("click", function () {
+    var html = document.querySelector("table").outerHTML;
+	export_table_to_csv(html, "table.csv");
+});
+
+
+
 function listResult(){
 	
 	$.ajax({
 		url: "../WekaInsightAPIs/rest/articles/results/",
 		type: 'GET',
 		dataType : "text",
-        contentType: "text/plain",
+      //  contentType: "text/plain",
 	}).fail(function(response) {
 		console.log(JSON.stringify(response));
-
+		
     }).done(function(response){
-	
+    		alert("classification failed");
 //    		var lstResults = "<tr><td><a href ='./index.jsp?view=articleedit&edit="+value.attribute1+"' data-toggle='tooltip' title='View & Edit'><span class='fa fa-pencil-alt fa-fw' aria-hidden='true'></span><span class='sr-only'>View and Edit</span></a>"+
 //    		"<a href = '#' onclick=deleteCategoryModal('"+value.attribute1+"','"+encodeURIComponent(value.attribute1)+"') data-toggle='tooltip' title='Delete'><span class='fa fa-trash-alt' aria-hidden='true'></span><span class='sr-only'>Delete</span></a></td>" +
 //            "<td>"+value.attribute1+"</td><td>"+value.attribute2+"</td><td>"+value.attribute3+"</td><td>"+value.attribute4+"</td><td>"+value.attribute5+"</td></tr>";
@@ -97,24 +145,24 @@ function getArticle(){
 	});
 }
 */
-function postFile(){
-	$.ajax({
-		url: "../WekaInsightAPIs/rest/articles/result/",
-		type: 'POST',
-		dataType : "text",
-        contentType: "text/plain",
-	}).fail(function(response) {
-		alert("There was a failure")
-		console.log(JSON.stringify(response));
-
-    }).done(function(response){
-    	alert("Starting to get response");
-    	$("#testResult").text(response);
-    	console.log(response);
-    	alert("Response received");
-
-	});
-}
+//function postFile(){
+//	$.ajax({
+//		url: "../WekaInsightAPIs/rest/articles/result/",
+//		type: 'POST',
+//		dataType : "text",
+//        contentType: "text/plain",
+//	}).fail(function(response) {
+//		alert("There was a failure")
+//		console.log(JSON.stringify(response));
+//
+//    }).done(function(response){
+//    	alert("Starting to get response");
+//    	$("#testResult").text(response);
+//    	console.log(response);
+//    	alert("Response received");
+//
+//	});
+//}
 
 function getResult(){
 	$.ajax({
