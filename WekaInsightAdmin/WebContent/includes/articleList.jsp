@@ -1,20 +1,27 @@
   <h1 class="page-header">File Name</h1>
-	
+	 <input type="file" id="fileUpload" />
+<input type="button" id="upload" value="Upload" onclick="Upload()" />
 <div class="form-group">
+
 	<span>
-     	<button class="btn btn-primary"  type="submit" onclick="addArticle()" id="articleAdd" data-toggle="tooltip" title="Add Article">Add Article</button>
-	</span>
-	<span>
-     	<button class="btn btn-primary"  type="button" onclick="pageClassify" id="pageClassify" data-toggle="tooltip" title="List Result">classify</button>
+     	<button class="btn btn-primary"  type="button" onclick="listResult()" id="listResult" data-toggle="tooltip" title="List Result">classify</button>
 	</span>
  	<span>
      	<button class = "btn btn-link" type="button" onclick="window.location.reload(true)" data-toggle="tooltip" title="Cancels adding the Article, and refreshes this webpage.">Cancel</button>
    	</span>
 </div>   
+
+
+<hr />
+<div id="dvCSV">
+</div>
+
+<p id=result></p>
  
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
 <script type = "text/javascript">
 
 function download_csv(csv, filename) {
@@ -67,6 +74,42 @@ document.querySelector("button").addEventListener("click", function () {
 
 </script>
 
+
+<script type="text/javascript">
+    function Upload() {
+        var fileUpload = document.getElementById("fileUpload");
+        var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.txt)$/;
+        if (regex.test(fileUpload.value.toLowerCase())) {
+            if (typeof (FileReader) != "undefined") {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var table = document.createElement("table");
+                    var rows = e.target.result.split("\n");
+                    for (var i = 0; i < rows.length; i++) {
+                        var cells = rows[i].split(",");
+                        if (cells.length > 1) {
+                            var row = table.insertRow(-1);
+                            for (var j = 0; j < cells.length; j++) {
+                                var cell = row.insertCell(-1);
+                                cell.innerHTML = cells[j];
+                            }
+                        }
+                    }
+                    var dvCSV = document.getElementById("dvCSV");
+                    dvCSV.innerHTML = "";
+                    dvCSV.appendChild(table);
+                }
+                reader.readAsText(fileUpload.files[0]);
+            } else {
+                alert("This browser does not support HTML5.");
+            }
+        } else {
+            alert("Please upload a valid CSV file.");
+        }
+    }
+</script>
+
+
 <script type="text/javascript">
 $(document).ready(function($)
 {
@@ -100,6 +143,7 @@ $(document).ready(function($)
 			tbl +='<th>Attribute</th>';
 			tbl +='<th>Attribute</th>';
 			tbl +='<th>Attribute</th>';
+			tbl +='<th>Attribute</th>';
 			tbl +='</tr>';
 		tbl +='</thead>';
 		//--->create table header > end
@@ -119,7 +163,7 @@ $(document).ready(function($)
 					tbl +='<td ><div class="row_data" edit_type="click" col_name="att1">'+val['att1']+'</div></td>';
 					tbl +='<td ><div class="row_data" edit_type="click" col_name="att2">'+val['att2']+'</div></td>';
 					tbl +='<td ><div class="row_data" edit_type="click" col_name="att3">'+val['att3']+'</div></td>';
-					tbl +='<td ><div class="row_data" edit_type="click" col_name="att3">'+val['att3']+'</div></td>';
+					tbl +='<td ><div class="row_data" edit_type="click" col_name="att4">'+val['att4']+'</div></td>';
 
 					//--->edit options > start
 					tbl +='<td>';
@@ -326,51 +370,6 @@ $(document).ready(function($)
 
 </div>
 
- 
-
-<script type="text/javascript">
-    function Upload() {
-        var fileUpload = document.getElementById("fileUpload");
-        var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.txt)$/;
-        if (regex.test(fileUpload.value.toLowerCase())) {
-            if (typeof (FileReader) != "undefined") {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    var table = document.createElement("table");
-                    var rows = e.target.result.split("\n");
-                    for (var i = 0; i < rows.length; i++) {
-                        var cells = rows[i].split(",");
-                        if (cells.length > 1) {
-                            var row = table.insertRow(-1);
-                            for (var j = 0; j < cells.length; j++) {
-                                var cell = row.insertCell(-1);
-                                cell.innerHTML = cells[j];
-                            }
-                        }
-                    }
-                    var dvCSV = document.getElementById("dvCSV");
-                    dvCSV.innerHTML = "";
-                    dvCSV.appendChild(table);
-                }
-                reader.readAsText(fileUpload.files[0]);
-            } else {
-                alert("This browser does not support HTML5.");
-            }
-        } else {
-            alert("Please upload a valid CSV file.");
-        }
-    }
-</script>
-<input type="file" id="fileUpload" />
-<input type="button" id="upload" value="Upload" onclick="Upload()" />
-<hr />
-<div id="dvCSV">
-</div>
-
-<p id=result></p>
-
-<br>
-<br>
 
 <div id="deleteArticleModal" class="modal fade" tabindex="-1">
 	<div class="modal-dialog">
