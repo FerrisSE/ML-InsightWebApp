@@ -107,20 +107,17 @@ document.querySelector("button").addEventListener("click", function () {
             alert("Please upload a valid CSV file.");
         }
     }
-</script>
 
-
-<script type="text/javascript">
 $(document).ready(function($)
 {
 	var ajax_data;
 	//ajax row data
 	 ajax_data =
 	[
-		{att1:"Code", att2:"With Mark", att3:"mark@codewithmark.com", att4:"julie@gmail.com"}, 
-		{att1:"Mary", att2:"Moe", att3:"mary@gmail.com", att4:"julie@gmail.com"},
-		{att1:"John", att2:"Doe", att3:"john@yahoo.com", att4:"julie@gmail.com"},
-		{att1:"Julie", att2:"Dooley", att3:"julie@gmail.com", att4:"julie@gmail.com"},
+		{att1:"Code", att2:"With Mark", att3:"mark@codewithmark.com", att4:"julie@gmail.com", att5:"julie@gmail.com"}, 
+		{att1:"Mary", att2:"Moe", att3:"mary@gmail.com", att4:"julie@gmail.com", att5:"julie@gmail.com"},
+		{att1:"John", att2:"Doe", att3:"john@yahoo.com", att4:"julie@gmail.com", att5:"julie@gmail.com"},
+		{att1:"Julie", att2:"Dooley", att3:"julie@gmail.com", att4:"julie@gmail.com", att5:"julie@gmail.com"},
 	]
 	
 
@@ -164,7 +161,9 @@ $(document).ready(function($)
 					tbl +='<td ><div class="row_data" edit_type="click" col_name="att2">'+val['att2']+'</div></td>';
 					tbl +='<td ><div class="row_data" edit_type="click" col_name="att3">'+val['att3']+'</div></td>';
 					tbl +='<td ><div class="row_data" edit_type="click" col_name="att4">'+val['att4']+'</div></td>';
+					tbl +='<td ><div class="row_data" edit_type="click" col_name="att4">'+val['att4']+'</div></td>';
 
+					
 					//--->edit options > start
 					tbl +='<td>';
 					 
