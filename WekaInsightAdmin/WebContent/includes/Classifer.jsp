@@ -16,15 +16,18 @@
     		 <div class="form-group">
  <span>
      <button class="btn btn-primary"  type="submit" onclick="getResult()" id="results" data-toggle="tooltip" title="Get Result">Select File</button>
- </span>
 
 <button type="button" onclick="clickHandler()">Click Me!</button>
+ </span>
+
 
 <script>
     function clickHandler() {
+       	
       alert("something");
        try{
-      getResult();
+    
+      //getResult();
       alert("Something Was Called")
        }catch(Exception ){
     	   alert("get result failed")

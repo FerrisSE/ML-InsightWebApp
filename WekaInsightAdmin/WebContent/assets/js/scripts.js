@@ -1,26 +1,44 @@
 $(document).ready(function(){
 
-	//listArticles();
-		
+	//listDatas();
+	listAttributes();
+	
 	view = getQueryStringVariable('view');
 	
-	if(view == 'articleedit'){
-		articleID = getQueryStringVariable('edit');
-		getArticle(articleID);
+	if(view == 'dataedit'){
+		dataID = getQueryStringVariable('edit');
+		getData(dataID);
 	}
 	if(view == 'navedit'){
-		navigationID = getQueryStringVariable('edit');
-		getNavigation(navigationID);
+		attributeID = getQueryStringVariable('edit');
+		getNavigation(attributeID);
 	}
 	if(view == 'catedit'){
-		categoryID = getQueryStringVariable('edit');
-		getCategory(categoryID);
+		attributeID = getQueryStringVariable('edit');
+		getAttribute(attributeID);
 	}
 	if(view == 'useredit'){
 		userID = getQueryStringVariable('edit');
 		getUser(userID);
 	}
+	if(view == 'data'){
+		dataID = getQueryStringVariable('dataID');
+		getData(dataID);
+	}
+	if(view == 'datasbycat'){
+		attributeID = getQueryStringVariable('attributeID');
+		getAttribute(attributeID);
+		listDatasByAttribute(attributeID);
+	}
 });
+
+var getQueryStringVariable = function ( field, url ) {
+	var href = url ? url : window.location.href;
+	var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
+	var string = reg.exec(href);
+	return string ? string[1] : null;
+};
+
 
 function download_csv(csv, filename) {
     var csvFile;
@@ -67,7 +85,7 @@ function export_table_to_csv(html, filename) {
 
 document.querySelector("button").addEventListener("click", function () {
     var html = document.querySelector("table").outerHTML;
-	export_table_to_csv(html, "table.csv");
+	export_table_to_csv(html, filename+".csv");
 });
 
 
@@ -75,7 +93,7 @@ document.querySelector("button").addEventListener("click", function () {
 function listResult(){
 	
 	$.ajax({
-		url: "../WekaInsightAPIs/rest/articles/results/",
+		url: "../WekaInsightAPIs/rest/datas/results/",
 		type: 'GET',
 		dataType : "text",
       //  contentType: "text/plain",
@@ -84,8 +102,8 @@ function listResult(){
 		
     }).done(function(response){
     		alert("classification failed");
-//    		var lstResults = "<tr><td><a href ='./index.jsp?view=articleedit&edit="+value.attribute1+"' data-toggle='tooltip' title='View & Edit'><span class='fa fa-pencil-alt fa-fw' aria-hidden='true'></span><span class='sr-only'>View and Edit</span></a>"+
-//    		"<a href = '#' onclick=deleteCategoryModal('"+value.attribute1+"','"+encodeURIComponent(value.attribute1)+"') data-toggle='tooltip' title='Delete'><span class='fa fa-trash-alt' aria-hidden='true'></span><span class='sr-only'>Delete</span></a></td>" +
+//    		var lstResults = "<tr><td><a href ='./index.jsp?view=dataedit&edit="+value.attribute1+"' data-toggle='tooltip' title='View & Edit'><span class='fa fa-pencil-alt fa-fw' aria-hidden='true'></span><span class='sr-only'>View and Edit</span></a>"+
+//    		"<a href = '#' onclick=deleteAttributeModal('"+value.attribute1+"','"+encodeURIComponent(value.attribute1)+"') data-toggle='tooltip' title='Delete'><span class='fa fa-trash-alt' aria-hidden='true'></span><span class='sr-only'>Delete</span></a></td>" +
 //            "<td>"+value.attribute1+"</td><td>"+value.attribute2+"</td><td>"+value.attribute3+"</td><td>"+value.attribute4+"</td><td>"+value.attribute5+"</td></tr>";
 //    		
     		var lstResults = "<a>"+response+"</a>"
@@ -97,10 +115,10 @@ function listResult(){
 }
 
 //Client side API call using AJAX
-//function listArticles(){
+//function listDatas(){
 //	
 //	$.ajax({
-//		url: "../WekaInsightAPIs/rest/articles/list/",
+//		url: "../WekaInsightAPIs/rest/datas/list/",
 //		type: 'GET',
 //		dataType : "json",
 //        contentType: "application/json",
@@ -122,17 +140,17 @@ function listResult(){
 //	});
 //}	
 /*
-function getArticle(){
+function getData(){
 	var testTitle = $("#testTitle").val();
-//	var categoryID = $("#categoryID").val();
+//	var attributeID = $("#attributeID").val();
 //	var userID = $("#userID").val();
 	var testResult = $("#testResult").val();
 	
-//	var parms = { testTitle:testTitle, categoryID:categoryID, userID:userID, testResult:testResult}
+//	var parms = { testTitle:testTitle, attributeID:attributeID, userID:userID, testResult:testResult}
 	var parms = { testTitle:testTitle, testResult:testResult}
 	var result = ClassifyInstance.getTestResult;
 	$.ajax({
-		url: "../WekaInsightAPIs/rest/articles/users/",
+		url: "../WekaInsightAPIs/rest/datas/users/",
 	//	type: 'GET',
 		dataType : "JSON",
         contentType: "application/json",
@@ -147,7 +165,7 @@ function getArticle(){
 */
 //function postFile(){
 //	$.ajax({
-//		url: "../WekaInsightAPIs/rest/articles/result/",
+//		url: "../WekaInsightAPIs/rest/datas/result/",
 //		type: 'POST',
 //		dataType : "text",
 //        contentType: "text/plain",
@@ -166,7 +184,7 @@ function getArticle(){
 
 function getResult(){
 	$.ajax({
-		url: "../WekaInsightAPIs/rest/articles/result/",
+		url: "../WekaInsightAPIs/rest/datas/result/",
 		type: 'GET',
 		dataType : "text",
         contentType: "text/plain",
@@ -182,3 +200,130 @@ function getResult(){
 
 	});
 }
+
+function listAttributes(){
+
+	$.ajax({
+		url: "../WekaInsightAPIs/rest/attributes/listvisible/",
+		type: 'GET',
+		dataType : "json",
+        contentType: "application/json",
+	}).fail(function(response) {
+
+    }).done(function(response) {
+    	
+    	$.each(response, function(key, value) {
+    		if(value.hasOwnProperty('attributes')){
+    			
+    			attributes = "<li class='nav-item dropdown'><a class='nav-link dropdown-toggle' href='"+value.attributeURL+"' role='button' data-toggle='dropdown'>"+value.attributeName+"</a>";
+    			attributes += "<div class='dropdown-menu'>";
+    			
+    			$.each(value.attributes, function(k, v){
+	    			attributes += "<a class='dropdown-item' href='index.jsp?view=datasbycat&attributeID="+v.attributeID+"'>"+v.attributeName+"</a>";
+    			});
+    	
+    			attributes += "</div></li>";
+    			
+    		}else{
+
+    			attributes = "<li class='nav-item'><a class='nav-link' href='"+value.attributeURL+"'>"+value.attributeName+"</a></li>";
+    		}
+    		$("#attributeUL").append(attributes);
+    	});
+	});
+}
+
+function getAttribute(attributeID){
+
+	$.ajax({
+		url: "../WekaInsightAPIs/rest/attributes/list/"+attributeID,
+		type: 'GET',
+		dataType : "json",
+        contentType: "application/json",
+	}).fail(function(response) {
+
+    }).done(function(response) {
+    	
+		Console.log("attribute: "+attributeID);
+
+    	var heading = "<h1 class='my-4'>"+response.attributeName+"</h1><hr>"+
+    		    	"<div class='row'><div><img class='img-responsive img-thumbnail img-rounded artImage' src='./uploads/"+response.attributeImage+"'>"+
+    		    	response.attributeContent+"</div></div><hr>";
+    		    	
+    		    	$("#dataPageHeading").append(heading);
+
+    				Console.log("attribute: "+attributeID);
+
+    	});
+}
+
+function listDatasByAttribute(attributeID){
+
+	$.ajax({
+		url: "../WekaInsightAPIs/rest/datas/listByAttribute/"+attributeID,
+		type: 'GET',
+		dataType : "json",
+        contentType: "application/json",
+	}).fail(function(response) {
+
+    }).done(function(response) {
+    	
+    	$.each(response, function(key, value) {
+    		console.log("attribute: "+attributeID);
+
+    		
+    		
+    		var blogPosts = "<div class='card mb-4'>" +
+            "<img id='imageId_"+value.dataAuthorID+"' class='card-img-top' src='./uploads/"+value.dataImage+"' alt='Card image cap'>" +
+            "<div class='card-body'>" +
+              "<h2 class='card-title'>" + value.dataTitle + "</h2>" +
+              "<p class='card-text'>" + value.dataContent + "</p>" +
+              "<a href='./index.jsp?view=data&dataID="+value.dataID+"' class='btn btn-primary'>Read More &rarr;</a>" +
+            "</div>" +
+            "<div class='card-footer text-muted'>" +
+              "Posted on " +value.dataCreateDate+" "
+              "<a id='usernameId_"+value.dataAuthorID+"' href='#'>"+value.dataAuthorID+"</a>" +
+            "</div>" +
+          "</div>";
+    	
+    		$("#blogBody").append(blogPosts);
+    		
+    	});
+	});
+}
+
+
+function listNavigations(){
+
+	$.ajax({
+		url: "../WekaInsightAPIs/rest/navigations/listvisible/",
+		type: 'GET',
+		dataType : "json",
+        contentType: "application/json",
+	}).fail(function(response) {
+
+    }).done(function(response) {
+    	
+    	$.each(response, function(key, value) {
+    		if(value.hasOwnProperty('attributes')){
+    			
+    			navigations = "<li class='nav-item dropdown'><a class='nav-link dropdown-toggle' href='"+value.navigationURL+"' role='button' data-toggle='dropdown'>"+value.navigationName+"</a>";
+    			navigations += "<div class='dropdown-menu'>";
+    			
+    			$.each(value.attributes, function(k, v){
+	    			navigations += "<a class='dropdown-item' href='index.jsp?view=datasbycat&attributeID="+v.attributeID+"'>"+v.attributeName+"</a>";
+    			});
+    	
+    			navigations += "</div></li>";
+    			
+    		}else{
+
+    			navigations = "<li class='nav-item'><a class='nav-link' href='"+value.navigationURL+"'>"+value.navigationName+"</a></li>";
+    		}
+    		$("#navigationUL").append(navigations);
+    	});
+	});
+}
+
+
+
