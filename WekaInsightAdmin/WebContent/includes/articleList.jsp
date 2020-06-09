@@ -4,15 +4,182 @@
 	<input type="button" id="edit" value="Edit File" onclick="GetTable()" />
 <div class="form-group">
 
-	<span>
-     	<button class="btn btn-primary"  type="button" onclick="listResult()" id="listResult" data-toggle="tooltip" title="List Result">classify</button>
-	</span>
+<div class="dropdown">
+  <button onclick="build_function()" class="dropbtn">Build Prediction Model</button>
+  <div id="buildDropdown" class="dropdown-content">
+    <input type="text" id="buildInput" onkeyup="filterFunction()">
+    <a href="#wekaAPI">wekaAPI</a>
+    <a href="#TensorFlow">TensorFlow</a>
+    <a href="#Sci-kitLearn">Sci-kit Learn</a>
+
+  </div>
+</div>
+<!-- 	<span> -->
+<!--      	<button class="btn btn-primary"  type="button" onclick="listResult()" id="listResult" data-toggle="tooltip" title="List Result">Build Prediction Model</button> -->
+<!-- 	</span> -->
 
  	<span>
      	<button class = "btn btn-link" type="button" onclick="window.location.reload(true)" data-toggle="tooltip" title="Cancels adding the Article, and refreshes this webpage.">Cancel</button>
    	</span>
+
 </div>   
 
+
+
+
+
+<style>
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #3e8e41;
+}
+
+#myInput {
+  box-sizing: border-box;
+  background-image: url('searchicon.png');
+  background-position: 14px 12px;
+  background-repeat: no-repeat;
+  font-size: 16px;
+  padding: 14px 20px 12px 45px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+}
+
+#myInput:focus {outline: 3px solid #ddd;}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f6f6f6;
+  min-width: 230px;
+  overflow: auto;
+  border: 1px solid #ddd;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+</style>
+</head>
+<body>
+
+
+
+<script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function build_function() {
+  document.getElementById("buildDropdown").classList.toggle("show");
+}
+function attribute_selection() {
+	  document.getElementById("attributeDropdown").classList.toggle("show");
+	}
+function Statistic_tools() {
+	  document.getElementById("statDropdown").classList.toggle("show");
+	}
+
+function filter_Function_Build() {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("buildInput");
+  filter = input.value.toUpperCase();
+  div = document.getElementById("buildDropdown");
+  a = div.getElementsByTagName("a");
+  for (i = 0; i < a.length; i++) {
+    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+}
+function filter_Function_Attribute() {
+	  var input, filter, ul, li, a, i;
+	  input = document.getElementById("attributeInput");
+	  filter = input.value.toUpperCase();
+	  div = document.getElementById("attributeDropdown");
+	  a = div.getElementsByTagName("a");
+	  for (i = 0; i < a.length; i++) {
+	    txtValue = a[i].textContent || a[i].innerText;
+	    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+	      a[i].style.display = "";
+	    } else {
+	      a[i].style.display = "none";
+	    }
+	  }
+	}
+</script>
+
+<div class="dropdown">
+  <button onclick="attribute_selection()" class="dropbtn">Attribute Selection</button>
+  <div id="attributeDropdown" class="dropdown-content">
+    <input type="text" id="attributeInput" onkeyup="filter_Function_Attribute()">
+    <a>outlook</a>
+    <a>temperature</a>
+    <a>humidity</a>
+    <a>windy</a>
+    <a>play</a>
+
+
+  </div>
+</div>
+
+<div class="navbar">
+  <div class="dropdown">
+  <button class="dropbtn" onclick="Statistic_tools()">Statistics
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-content" id="statDropdown">
+    <a href="#sortByMin">Min Sort</a>
+    <a href="#sortByMax">Max Sort</a>
+    <a href="#getAverage">Average</a>
+  </div>
+  </div> 
+</div>
+
+<script>
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function wekatools() {
+  document.getElementById("ropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+  var myDropdown = document.getElementById("myDropdown");
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+}
+</script>
+
+
+<!--    	<span> -->
+<!--    	<button onclick="exportTableToCSV('trainFile.csv')">Export HTML Table To CSV File</button> -->
+<!--    	</span> -->
 
 <hr />
 <div id="dvCSV">
@@ -22,23 +189,8 @@
  
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<button onclick="exportTableToCSV('members.csv')">Export HTML Table To CSV File</button>
-<button type="button" onclick="clickHandler()">Click Me!</button>
-  <!-- Navigation -->
-  <nav>
-    <div class="container">
-      <a class="navbar-brand" href="./index.jsp">eSports Central</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul id="navigationUL" class="navbar-nav ml-auto">
-          <li class="nav-item"><a class="nav-link" href="./index.jsp">Home</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+<!-- <button type="button" onclick="clickHandler()">Click Me!</button> -->
+
 
 
 <script type = "text/javascript">
@@ -144,12 +296,12 @@ document.querySelector("button").addEventListener("click", function () {
                         var cells = rows[i].split(",");
                         if (cells.length > 1) {
                             var row = table.insertRow(-1);
-
+							
                          //   attribute_data=[];
                             for (var j = 0; j < cells.length; j++) {
                                 var cell = row.insertCell(-1);
 
-                                    cell.innerHTML = cells[j]+" | ";
+                                    cell.innerHTML = "   |   <td>"+cells[j]+"</td>"+"<td></td><td></td>";
    								//attribute_data.push(new String(cells[j]));
    	                            switch(i){
    	                            case 0:
@@ -268,10 +420,14 @@ document.querySelector("button").addEventListener("click", function () {
                     var dvCSV = document.getElementById("dvCSV");
                     dvCSV.innerHTML = "";
                     dvCSV.appendChild(table);
+                    var table_attributes = document.getElementById("table_attributes");
+                    table_attributes.innerHTML = "";
+                    table_attributes.appendChild(table);
                 }
                 reader.readAsText(fileUpload.files[0]);
      //           getTable();
 				console.log(attribute_row1[0]);
+				$(document).find('.tbl_data').html(table);
                // TableEdit(attribute_row1,attribute_row2,attribute_row3,attribute_row4,attribute_row5,attribute_row6,attribute_row7,attribute_row8,attribute_row9,attribute_row10,attribute_row11,attribute_row12,attribute_row13,attribute_row14,attribute_row15);
   	
             } else {
@@ -282,6 +438,13 @@ document.querySelector("button").addEventListener("click", function () {
         }
     }
     </script>
+    
+    
+
+    
+    
+    
+    
 <script type="text/javascript">
 
 	function TableEdit(attribute_row1,attribute_row2,attribute_row3,attribute_row4,attribute_row5,attribute_row6,attribute_row7,attribute_row8,attribute_row9,attribute_row10,attribute_row11,attribute_row12,attribute_row13,attribute_row14,attribute_row15){
@@ -548,41 +711,80 @@ $(document).ready(function(){
 }
 </script>
 
-<div class="panel panel-default">
-  <div class="panel-heading"><b> Demo </b> </div>
+<!-- <div class="panel panel-default"> -->
+<!--   <div class="panel-heading"><b> Demo </b> </div> -->
 
-  <div class="panel-body">
+<!--   <div class="panel-body"> -->
 	
-	<div class="tbl_user_data"></div>
+<!-- 	<div class="tbl_user_data"></div> -->
 
-  </div>
+<!--   </div> -->
 
-</div>
+<!-- </div> -->
 
 <br>
 
-<div class="form-group">
-	<span>
-     	<button class="btn btn-primary"  type="submit" onclick="addAttribute()" id="attributeAdd" data-toggle="tooltip" title="Add Attribute">Add Attribute</button>
-	</span>
+<!-- <div class="form-group"> -->
+<!-- 	<span> -->
+<!--      	<button class="btn btn-primary"  type="submit" onclick="addAttribute()" id="attributeAdd" data-toggle="tooltip" title="Add Attribute">Add Attribute</button> -->
+<!-- 	</span> -->
 
- 	<span>
-     	<button class = "btn btn-link" type="button" onclick="window.location.reload(true)" data-toggle="tooltip" title="Cancels adding the Attribute, and refreshes this webpage.">Cancel</button>
-   	</span>
-</div>   
- 
-<table class = "table table-hover">
-    <thead id="dataBody">
-    <tr>
-        <th>Name</th>
-        <th>Attribute1</th>
-        <th>Attribute2</th>
-        <th>Attribute3</th>
-        <th>Attribute4</th>
-        <th>Attribute5</th>
-    </tr>
-    </thead>
-</table>
+<!--  	<span> -->
+<!--      	<button class = "btn btn-link" type="button" onclick="window.location.reload(true)" data-toggle="tooltip" title="Cancels adding the Attribute, and refreshes this webpage.">Cancel</button> -->
+<!--    	</span> -->
+<!-- </div>    -->
+  <!-- Editable table -->
+<div class="card">
+  <div class="card-body">
+    <div id="table_attributes" class="table-editable">
+      <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i
+            class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span>
+      <table class="table table-bordered table-responsive-md table-striped text-center">
+        <thead>
+          <tr>
+            <th class="text-center">Person Name</th>
+            <th class="text-center">Age</th>
+            <th class="text-center">Company Name</th>
+            <th class="text-center">Country</th>
+            <th class="text-center">City</th>
+            <th class="text-center">Sort</th>
+            <th class="text-center">Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+			          <tr >
+<!--             <td class="pt-3-half" contenteditable="true">Aurelia Vega</td> -->
+<!--             <td class="pt-3-half" contenteditable="true">30</td> -->
+<!--             <td class="pt-3-half" contenteditable="true">Deepends</td> -->
+<!--             <td class="pt-3-half" contenteditable="true">Spain</td> -->
+<!--             <td class="pt-3-half" contenteditable="true">Madrid</td> -->
+<!--             <td class="pt-3-half"> -->
+<!--               <span class="table-up"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-up" -->
+<!--                     aria-hidden="true"></i></a></span> -->
+<!--               <span class="table-down"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-down" -->
+<!--                     aria-hidden="true"></i></a></span> -->
+<!--             </td> -->
+<!--             <td> -->
+<!--               <span class="table-remove"><button type="button" -->
+<!--                   class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span> -->
+<!--             </td> -->
+<!--           </tr>  -->
+          </tbody>
+          </table>
+            
+    
+<!-- <table class = "table table-hover"> -->
+<!--     <thead id="dataBody"> -->
+<!--     <tr> -->
+<!--         <th>Name</th> -->
+<!--         <th>Attribute1</th> -->
+<!--         <th>Attribute2</th> -->
+<!--         <th>Attribute3</th> -->
+<!--         <th>Attribute4</th> -->
+<!--         <th>Attribute5</th> -->
+<!--     </tr> -->
+<!--     </thead> -->
+<!-- </table> -->
 
 <div id="deleteAttributeModal" class="modal fade" tabindex="-1">
 	<div class="modal-dialog">
@@ -605,7 +807,7 @@ $(document).ready(function(){
 	</div>
 </div>
 </div>
-    
+    <br>
 <!-- <div id="deleteArticleModal" class="modal fade" tabindex="-1"> -->
 <!-- 	<div class="modal-dialog"> -->
 <!-- 		<div class="modal-content"> -->

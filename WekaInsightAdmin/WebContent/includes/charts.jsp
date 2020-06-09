@@ -8,10 +8,13 @@
                     <div class="col-lg-8 mx-auto">
 						Start the process by loading an acceptable file by clicking load file and pressing upload.
 							<br/>
+					<img class="img-fluid" src="./assets/Images/ChooseFile.png" alt=""/>
+					
 							<br/>
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
                     <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    
                     <div class="divider-custom-line"></div>
                 </div>
                             <div class="control-group">

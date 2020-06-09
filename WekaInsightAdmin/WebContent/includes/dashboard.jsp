@@ -18,7 +18,6 @@
 <!--                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100"> -->
 <!--                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div> -->
 <!--                             </div> -->
-<!--                             <img class="img-fluid" src="./assets/Images/ML_image.jpg" alt="" height="120" width="420" /> -->
 <!--                         </div> -->
 <!--                     </div> -->
 <!--                     Portfolio Item 2 -->
@@ -80,6 +79,10 @@
                     <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                     <div class="divider-custom-line"></div>
                 </div>
+                </div>
+                </section>
+             <section class="page-section bg-white text-black mb-0" id="about">
+            <div class="container">
                 <!-- About Section Content-->
                 <div class="row">
                     <div class="col-lg-4 ml-auto"><p class="lead">These tools were developed by WEKA and utilized by the Digital Media Software Engineering Program.</p></div>
@@ -90,6 +93,7 @@
 
             </div>
         </section>
+                                <img class="img-fluid" src="./assets/Images/ML_image.jpg" alt="" height="120" width="420" />
     
         <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
         <div class="scroll-to-top d-lg-none position-fixed">

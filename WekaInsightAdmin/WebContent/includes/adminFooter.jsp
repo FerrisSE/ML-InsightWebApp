@@ -1,25 +1,5 @@
-     <!-- Sticky Footer -->
-      <footer class="sticky-footer">
-        <div class="container my-auto">
-    
-          <div class="copyright text-center my-auto">
-            <span>Copyright © Ferris State University 2020</span>
-          </div>
-        </div>
-        </div>
-      </footer>
-	
-    </div>
-    <!-- /.content-wrapper -->
-
-  </div>
-  <!-- /#wrapper -->
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
+  
+  
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -38,6 +18,28 @@
       </div>
     </div>
   </div>
+  
+  
+	
+    </div>
+    <!-- /.content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+     <!-- Sticky Footer -->
+      <footer class="sticky-footer" >
+        <div class="container my-auto" >
+    
+          <div class="copyright text-center my-auto">
+            <span>Copyright © Ferris State University 2020</span>
+          </div>
+        </div>
+        </div>
+      </footer>
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
 
   <!-- Bootstrap core JavaScript-->
   <script src="assets/vendor/jquery/jquery.min.js"></script>
@@ -52,10 +54,10 @@
   <script src="assets/js/articles.js"></script>
   
   
-  <!-- Page level plugins -->
+<!-- <!--   Page level plugins --> -->
 <!--   <script src="vendor/chart.js/Chart.min.js"></script> -->
 
-  <!-- Page level custom scripts -->
+<!-- <!--   Page level custom scripts --> -->
 <!--   <script src="js/demo/chart-area-demo.js"></script> -->
 <!--   <script src="js/demo/chart-pie-demo.js"></script> -->
 <!--   <script src="js/demo/chart-bar-demo.js"></script> -->

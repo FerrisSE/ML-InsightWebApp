@@ -7,6 +7,10 @@
                 <div class="divider-custom divider-light">
 
                 </div>
+           </div>
+        </section>
+         <section class="page-section bg-white text-black mb-0" id="about">
+            <div class="container">
                 <h4>Machine learning Insights made easy by the Ferris State Software Engineering program</h4>
                 <p>For instruction on how to use it please click "how to" in the navigation sidebar.</p>
                 <!-- About Section Content-->
