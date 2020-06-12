@@ -31,6 +31,11 @@
           <i class="fas fa-fw fa-table"></i>
           <span>prediction model</span></a>
       </li>
+                  <li class="nav-item">
+        <a class="nav-link" href="/upload.jsp">
+          <i class="fas fa-fw fa-table"></i>
+          <span>fileLoad</span></a>
+      </li>
             <li class="nav-item">
         <a class="nav-link" href="./index.jsp?view=about">
           <i class="fas fa-fw fa-table"></i>

@@ -32,6 +32,8 @@
 	<%@include file=".\includes\charts.jsp" %>
 		<%}else if(view.equals("about")){ %>
 	<%@include file=".\includes\About.jsp" %>
+			<%}else if(view.equals("upload_page")){ %>
+	<%@include file=".\includes\upload_page.jsp" %>
 		<%}else{ %>
 		<%@include file=".\includes\dashboard.jsp" %>
 		<%} %>

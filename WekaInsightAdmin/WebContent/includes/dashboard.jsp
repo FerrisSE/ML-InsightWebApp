@@ -93,7 +93,7 @@
 
             </div>
         </section>
-                                <img class="img-fluid" src="./assets/Images/ML_image.jpg" alt="" height="120" width="420" />
+                                <img class="img-fluid" src="./assets/Images/ML_image.jpg" alt=""/>
     
         <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
         <div class="scroll-to-top d-lg-none position-fixed">
