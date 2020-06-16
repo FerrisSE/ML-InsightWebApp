@@ -11,12 +11,14 @@
         </section>
          <section class="page-section bg-white text-black mb-0" id="about">
             <div class="container">
-                <h4>Machine learning Insights made easy by the Ferris State Software Engineering program</h4>
+                <h4>Machine learning Insights made easy by the Ferris State Software Engineering Lab</h4>
                 <p>For instruction on how to use it please click "how to" in the navigation sidebar.</p>
                 <!-- About Section Content-->
                 <div class="row">
-                    <div class="col-lg-4 ml-auto"><p class="lead">This site provides students with the means to utilize machine learning and conduct supervised learning within a easy to use interface.</p></div>
-                    <div class="col-lg-4 mr-auto"><p class="lead">The machine learning tool that the site uses currently is called WEKA. A lightweight machine learning program used to make predictions using classifers and filters.</p></div>
+                    <div class="col-lg-4 mr-auto"><p class="lead">This tool aims at extracting insights from your data using machine learning features.</p></div>
+                    <div class="col-lg-4 mr-auto"><p class="lead">This project was supported in part by Faculty Research grant at Ferris State Univeristy implemented by: Anthony scott, 
+                    digital media software engineering, supervised by dr. Mohamed abusharkh dr Yong Xu</p></div>
+
                 </div>
 
             </div>

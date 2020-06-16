@@ -1,8 +1,11 @@
   <h1 class="page-header">File Name</h1>
-	 <input type="file" id="fileUpload" />
-<input type="button" id="upload" value="Upload" onclick="Upload()" />
-	<input type="button" id="edit" value="Edit File" onclick="GetTable()" />
-<div class="form-group">
+  
+		<input type="file" name="filename" id="filename">
+<!-- 		<button id="upload_data" value="Upload">upload</button> -->
+		<div class="csv"></div>
+
+  <div class="form-group">
+
 
 <div class="dropdown">
   <button onclick="build_function()" class="dropbtn">Build Prediction Model</button>
@@ -93,11 +96,12 @@ function build_function() {
   document.getElementById("buildDropdown").classList.toggle("show");
 }
 function attribute_selection() {
-	  document.getElementById("attributeDropdown").classList.toggle("show");
+	  document.getElementById("colours").classList.toggle("show");
 	}
 function Statistic_tools() {
 	  document.getElementById("statDropdown").classList.toggle("show");
 	}
+	
 
 function filter_Function_Build() {
   var input, filter, ul, li, a, i;
@@ -130,46 +134,42 @@ function filter_Function_Attribute() {
 	  }
 	}
 </script>
-
-
-<script type="text/javascript">
-function setValue(){
-document.getElementById("attribute_select").value=document.getElementById("colour").value;
-document.productForm.submit();
-return true;
-}
+<script>
+   function selection(){
+	   var e = document.getElementById("ddl");
+	   var attribute_sel = e.options[e.selectedIndex].text;
+	   if(attribute_sel !=""){
+	   if(e.classList!=("visible")){
+	   document.getElementById("stats_block").classList=("visible");
+	   }
+	   }
+	   }
+   
 </script>
-<div>
-<form method="post"  name="productForm">
-    <select id="colour" name="colour" onchange="return setValue();">
-        <option value="dropdown">Select an Attribute</option>
-        <option value="outlook">outlook
-        <option value="temperature">temperature
-        <option value="humidity">humidity
-        <option value="windy">windy
-        <option value="play">play        
-    </select>
-    <input type="hidden" name="dropdown" id="dropdown">
-    <input type="submit" value="click" name="btn_dropdown">
 
-
-  <%
-        String colour = request.getParameter("colour").toString();
-        out.println("Attribute Selected: "+colour);
-   %>
-</form>
+<div >
+<select style="width:170px" id="ddl">
+<option></option>
+</select>
+<input type="button" value="Confirm Selection" onclick="selection()">
 </div>
 
 
+<!-- <input type="button" value="getvalue" onclick="abc()" /> -->
+
+
+
 <div class="navbar">
-  <div class="dropdown">
+  <div class="dropdown" id="stats_block" style="visibility:hidden">
   <button class="dropbtn" onclick="Statistic_tools()">Statistics
     <i class="fa fa-caret-down"></i>
   </button>
-  <div class="dropdown-content" id="statDropdown">
-    <a href="#sortByMin">Min Sort</a>
-    <a href="#sortByMax">Max Sort</a>
-    <a href="#getAverage" onclick="getAverage()">Average</a>
+  <div class="dropdown-content"  id="statDropdown" ">
+    <a href="#getMin"  onclick="getMin()">Min</a>
+    <a href="#getMax"  onclick="getMax()">Max</a>
+    <a href="#getAverage" onclick="getAverage()">Mean</a>
+    <a href="#getMode" onclick="getMode()">Mode</a>
+    
   </div>
   </div> 
 </div>
@@ -178,7 +178,7 @@ return true;
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
 function wekatools() {
-  document.getElementById("ropdown").classList.toggle("show");
+  document.getElementById("dropdown").classList.toggle("show");
 }
 
 // Close the dropdown if the user clicks outside of it
@@ -193,9 +193,9 @@ window.onclick = function(e) {
 </script>
 
 
-	<!--    	<span> -->
-	<!--    	<button onclick="exportTableToCSV('testingSave.csv')">Export HTML Table To CSV File</button> -->
-	<!--    	</span> -->
+   	<span>
+   	<button onclick="exportTableToCSV('testingSave.csv')">Export HTML Table To CSV File</button>
+   	</span>
 
 <hr />
 <div id="dvCSV">
@@ -205,166 +205,308 @@ window.onclick = function(e) {
  
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<!-- <button type="button" onclick="clickHandler()">Click Me!</button> -->
 
 
-<!-- <script type = "text/javascript"> -->
 
-<!--  function download_csv(csv, filename) { -->
-<!--      var csvFile; -->
-<!--      var downloadLink; -->
 
-<!--      // CSV FILE -->
-<!--      csvFile = new Blob([csv], {type: "text/csv"}); -->
+<script type = "text/javascript">
 
-<!--      // Download link -->
-<!--      downloadLink = document.createElement("a"); -->
+function download_csv(csv, filename) {
+    var csvFile;
+    var downloadLink;
 
-<!--      // File name -->
-<!--      downloadLink.download = filename; -->
+    // CSV FILE
+    csvFile = new Blob([csv], {type: "text/csv"});
 
-<!--      // We have to create a link to the file -->
-<!--      downloadLink.href = window.URL.createObjectURL(csvFile); -->
+    // Download link
+    downloadLink = document.createElement("a");
 
-<!--      // Make sure that the link is not displayed -->
-<!--      downloadLink.style.display = "none"; -->
+    // File name
+    downloadLink.download = filename;
 
-<!--      // Add the link to your DOM -->
-<!--      document.body.appendChild(downloadLink); -->
+    // We have to create a link to the file
+    downloadLink.href = window.URL.createObjectURL(csvFile);
 
-<!--      // Lanzamos -->
-<!--      downloadLink.click(); -->
-<!--  } -->
+    // Make sure that the link is not displayed
+    downloadLink.style.display = "none";
 
-<!--  function export_table_to_csv(filename) { -->
-<!--  	var csv = []; -->
-<!--  	var rows = document.querySelectorAll("table"); -->
+    // Add the link to your DOM
+    document.body.appendChild(downloadLink);
+
+    // Lanzamos
+    downloadLink.click();
+}
+
+function export_table_to_csv(filename) {
+	var csv = [];
+	var rows = document.querySelectorAll("table");
 	
-<!--      for (var i = 0; i < rows.length; i++) { -->
-<!--  		var row = [], cols = rows[i].querySelectorAll("td, th"); -->
-	
-<!--          for (var j = 0; j < cols.length; j++)  -->
-<!--              row.push(cols[j].innerText); -->
+    for (var i = 0; i < rows.length; i++) {
+		var row = [], cols = rows[i].querySelectorAll("td, th");
+		
+        for (var j = 0; j < cols.length; j++) 
+            row.push(cols[j].innerText);
         
-<!--  		csv.push(row.join(","));		 -->
-<!--  	} -->
-<!--      // Download CSV -->
-<!--      download_csv(csv.join("\n"), filename); -->
-<!--  } -->
+		csv.push(row.join(","));		
+	}
 
-<!--  document.querySelector("button").addEventListener("click", function () { -->
-<!--      var html = document.querySelector("table").outerHTML; -->
-<!--  	export_table_to_csv(filename+".csv"); -->
-<!--  }); -->
+    // Download CSV
+    download_csv(csv.join("\n"), filename);
+}
 
-<!-- </script> -->
+document.querySelector("button").addEventListener("click", function () {
+    var html = document.querySelector("table").outerHTML;
+	export_table_to_csv(filename+".csv");
+});
+
+</script>
 
 
 
 
+
+  
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
+<!--   	<script src='app1.js'></script> -->
+  	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  	
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
 
 
 
 <script type="text/javascript">
-    function Upload() {
-        var fileUpload = document.getElementById("fileUpload");
-        var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.txt)$/;
-        
-        var text_current='';
-        var attribute_data=[0,""];     
-        var attribute_rows=[];
-        var i;
-        
-    	var random_id = function  () 
-    	{
-    		var id_num = Math.random().toString(9).substr(2,3);
-    		var id_str = Math.random().toString(36).substr(2);
-    		
-    		return id_num + id_str;
-    	}
+
+$(document).ready(function(){
+	var data;
+	
+	$("#filename").change(function(e){
+		var ext = $("#filename").val().split(".").pop().toLowerCase();
+
+		if($.inArray(ext, ["csv"]) == -1) {
+			alert('Upload CSV');
+			return false;
+		}
+
+		if(e.target.files != undefined){
+			var reader = new FileReader();
+			reader.onload = function(e){
+				
+				  var optionList = [];
+				
+				csvResult = e.target.result.split(/\r|\n|\r\n/);
+			    var employee_data = e.target.result.split(/\r|\n|\r\n/);
+			    var table_data = '<table class="table table-bordered table-striped">';
+			    for(var count = 0; count<employee_data.length; count++)
+			    {
+			     var cell_data = employee_data[count].split(",");
+			     table_data += '<tr>';
+			     for(var cell_count=0; cell_count<cell_data.length; cell_count++)
+			     {
+			      if(count === 0)
+			      {
+			       table_data += '<th>'+cell_data[cell_count]+'</th>';
+					  optionList[cell_count] = document.createElement("option");
+					  optionList[cell_count].setAttribute("id", "ddl");	
+					  optionList[cell_count].text = cell_data[cell_count];
+					  optionList[cell_count].value = cell_count;
+					  document.getElementById("ddl").appendChild(optionList[cell_count]);
+			      }
+			      else
+			      {
+			       table_data += '<td>'+cell_data[cell_count]+'</td>';
+			      }
+			     }
+			     table_data += '</tr>';
+			    }
+			    table_data += '</table>';
+			    $('#table_attributes').html(table_data);
+	
+				$('.csv').append(csvResult);
+			}
+			reader.readAsText(e.target.files.item(0));
+		}
+	});
+	
+	
+	$.ajax({
+	  type: "GET",  
+	  url: "http://localhost:8082/WekaInsightAPIs/CSVsamples/weather.numeric.csv",
+	  dataType: "text",       
+	  success: function(response)  
+	  {
+		data = $.csv.toArrays(response);
+		generateHtmlTable(data);
+	  }   
+	});
+	
+	function generateHtmlTable(data) {
+		var html = '<table  class="table table-condensed table-hover table-striped">';
+
+    if(typeof(data[0]) === 'undefined') {
+      return null;
+    } else {
+		$.each(data, function( index, row ) {
+		  //bind header
+		  if(index == 0) {
+			html += '<thead>';
+			html += '<tr>';
+			$.each(row, function( index, colData ) {
+				html += '<th>';
+				html += colData;
+				html += '</th>';
+			});
+			html += '</tr>';
+			html += '</thead>';
+			html += '<tbody>';
+		  } else {
+			html += '<tr>';
+			$.each(row, function( index, colData ) {
+				html += '<td>';
+				html += colData;
+				html += '</td>';
+			});
+			html += '</tr>';
+		  }
+		});
+		html += '</tbody>';
+		html += '</table>';
+		
+		$('#csv-display').append(html);
+	  }
+	}
+});
+
+</script >
+
+    <h3 id="val"></h3>
+<script type="text/javascript">
+ function getAverage(){ 
+	 
+  var table = document.getElementById("table_attributes");
+ var avgVal=0;
+ var sumVal = 0;
+ var rowCount = $('#myTable tr').length;
+ var count=0;
+ var e = document.getElementById("ddl");
+ var attribute_sel = e.selectedIndex;
+ var tester;
+//  console.log(attribute_sel);
+
+	 $('#table_attributes tbody tr td:nth-child('+attribute_sel+')').each( function(){
+		 tester=$(this).text();
+		 //console.log(tester);
  
-
-        
-        if (regex.test(fileUpload.value.toLowerCase())) {
-            if (typeof (FileReader) != "undefined") {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    var table = document.createElement("table");
-                    table.setAttribute('class','table table-hover')
-                    var rows = e.target.result.split("\n");
-					var drop_current = '';
-                    for (i = 0; i < rows.length; i++) {
-                        var cells = rows[i].split(",");
-                        attribute_current=rows[i].split(",");
-                        if (cells.length > 1) {
-                            var row = table.insertRow(-1);
-							
-                         //   attribute_data=[];
-                            for (var j = 0; j < cells.length; j++) {
-                                var cell = row.insertCell(-1);
-									if(i==0){
-										if(j==0)text_current ='<thead><tr>';
-	                                    text_current = text_current+('<th>'+cells[j]+'</th>');
-	        
-// 	                                    var attribute_Dropdown = document.getElementById("attribute_Dropdown");
-// 	                                    attribute_Dropdown.innerHTML = drop_current;
-	                                    document.getElementById("attributeInput").innerHTML = '<a>'+cells[j]+'</a>';
-	                                    table.innerHTML =text_current;
-	                                    
-	                                    table.innerHTML =text_current;
-										if(j==cells.length-1)text_current ='</thead></tr></tbody>';
-									}else{
-										text_current="";
-	                                    cell.innerHTML = '<td ><div class="row_data" edit_type="click" col_name="'+j+'">'+cells[j]+'</div></td>';
-										if(i==cells.length-1){
-											text_current='<td>'+								 
-																'<span class="btn_edit" > <a href="#" class="btn btn-link " row_id="'+i+'" > Edit</a> </span>'+
-																'<span class="btn_save"> <a href="#" class="btn btn-link"  row_id="'+i+'"> Save</a> | </span>'+
-																'<span class="btn_cancel"> <a href="#" class="btn btn-link" row_id="'+i+'"> Cancel</a> | </span>'+
-														'</td>'+						
-												'</tr>';
-											
-										}
-									}
-                                    attribute_data.push([i,cells[j]]);
-									console.log(attribute_data);
-                                    //attribute_data.push(new String(cells[j]));
-   	                         
-
-   						    }
-                        }
-                    }
-                                	              
-                    var dvCSV = document.getElementById("table_attributes");
-                    dvCSV.innerHTML = "";
-                    dvCSV.appendChild(table);
-                    var table_attributes = document.getElementById("table");
-                    table_attributes.innerHTML = "";
-                    table_attributes.appendChild(table);
-                }
-                reader.readAsText(fileUpload.files[0]);
-     //           getTable();
-				$(document).find('.tbl_data').html(table);
-				//$(document).find('.tbl_data').html(table);
-               // TableEdit(attribute_row1,attribute_row2,attribute_row3,attribute_row4,attribute_row5,attribute_row6,attribute_row7,attribute_row8,attribute_row9,attribute_row10,attribute_row11,attribute_row12,attribute_row13,attribute_row14,attribute_row15);
-  	
-            } else {
-                alert("This browser does not support HTML5.");
-            }
-        } else {
-            alert("Please upload a valid CSV file.");
-        }
-    }
-</script>
-
-        <span id="val"></span>
+// 		 console.log($(this).text());
+		   //add item to array
+		   sumVal = sumVal + parseInt($(this).text());
+// 		   console.log(sumVal);
+		   count++;
+		 });
+	 
+	 var re = new RegExp("^([0-9])$");
+	 if (re.test(tester)) {
+	     console.log("Valid");
+	 } else {
+	     console.log("Invalid");
+	     getMode();
+	 }
+	 	avgVal=Math.round(sumVal/count);
+	 	console.log("avgVal= "+avgVal);
 
 
+document.getElementById("val").innerHTML = "Average Value = " +avgVal;
+
+ }
+ 
+ function getMode(){
+	 
+	  var table = document.getElementById("table_attributes");
+	  var mode="";
+	  var sumVal = 0;
+	  var rowCount = $('#myTable tr').length;
+	  var count=0;
+	  var e = document.getElementById("ddl");
+	  var attribute_sel = e.selectedIndex;
+	  var cell_array=[];
+	  
+	 	 $('#table_attributes tbody tr td:nth-child('+attribute_sel+')').each( function(){
+	 		  cell_array.push( $(this).text() );  
+
+	 	});
+
+
+	     var modeMap = {};
+	     var maxEl = cell_array[0], maxCount = 1;
+	     for(var i = 0; i < cell_array.length; i++)
+	     {
+	         var el = cell_array[i];
+	         if(modeMap[el] == null)
+	             modeMap[el] = 1;
+	         else
+	             modeMap[el]++;  
+	         if(modeMap[el] > maxCount)
+	         {
+	             maxEl = el;
+	             maxCount = modeMap[el];
+	         }
+	     }
+		 document.getElementById("val").innerHTML = "Mode Value = " +maxEl;
+
+ }
+	 
+ function getMin(){ 
+	 
+	  var table = document.getElementById("table_attributes");
+	 var min_val=1000000000000000000000000000;
+	 var current_val = 0;
+	 var e = document.getElementById("ddl");
+	 var attribute_sel = e.selectedIndex;
+	 
+	 $('#table_attributes tbody tr td:nth-child('+attribute_sel+')').each( function(){
+			// console.log($(this).text());
+			   //add item to array
+			   			   current_val=($(this).text());
+			   if(current_val<min_val)min_val=current_val;
+			   console.log(min_val);
+
+			});
+
+
+	document.getElementById("val").innerHTML = "Current Minimum Value = " +min_val;
+
+	} 
+
+ function getMax(){ 
+	 
+	  var table = document.getElementById("table_attributes");
+	 var max_val=0;
+	 var current_val = 0;
+	 var e = document.getElementById("ddl");
+	 var attribute_sel = e.selectedIndex;
+	 
+	 $('#table_attributes tbody tr td:nth-child('+attribute_sel+')').each( function(){
+			// console.log($(this).text());
+			   //add item to array
+			   current_val=($(this).text());
+			   if(current_val>max_val)max_val=current_val;
+			   console.log(max_val);
+
+			});
+
+
+	document.getElementById("val").innerHTML = "Current Maximum Value = " +max_val;
+
+	} 
+ </script> 
 <br>
+
 
   <!-- Editable table -->
 <div class="card">
   <div class="card-body">
-    <div id="table_attributes" class="table-editable">
+  <div class="well">
+    <div id="table_attributes" class="table-editable" style="height:500px;width:1600px;overflow: scroll;">
       <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i
             class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span>
       <table class="table table-bordered table-responsive-md table-striped text-center">
@@ -380,34 +522,11 @@ window.onclick = function(e) {
           </tr>
         </thead>
         <tbody>
-	
-          </tbody>
-          </table>
-            
-    
-
-<div id="deleteAttributeModal" class="modal fade" tabindex="-1">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">Confirmation</h5>
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-			</div>
-			<div class="modal-body">
-			<p class="text-secondary">Are you sure you want to delete this Attribute?</p>
-			<label>ID</label>
-			<p id='attributeID' class="text-secondary"></p>
-			<label>Name</label>
-			<p id='attributeName' class="text-secondary"></p>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-				<button type="button" class="btn btn-primary" data-dismiss="modal" onClick="deleteAttribute()">Delete</button>
-			</div>
+	</tbody>
+	</table>
 	</div>
-</div>
-</div>
+	</div>
+	</div>
+	</div>
+	
     <br>
-
-
-    

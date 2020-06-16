@@ -1703,6 +1703,16 @@ pre code {
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
 
+
+.hide {
+  display: none;
+}
+
+.myDIV:hover + .hide {
+  display: block;
+  color: red;
+}
+
 .table {
   width: 100%;
   margin-bottom: 1rem;

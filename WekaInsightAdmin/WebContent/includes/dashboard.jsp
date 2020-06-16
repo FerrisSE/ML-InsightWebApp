@@ -76,7 +76,6 @@
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-light">
                     <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                     <div class="divider-custom-line"></div>
                 </div>
                 </div>
@@ -85,15 +84,12 @@
             <div class="container">
                 <!-- About Section Content-->
                 <div class="row">
-                    <div class="col-lg-4 ml-auto"><p class="lead">These tools were developed by WEKA and utilized by the Digital Media Software Engineering Program.</p></div>
-                    <div class="col-lg-4 ml-auto"><p class="lead">The tools on this site were designed for flexibility and ease of use.</p></div>
-
-                    <div class="col-lg-4 mr-auto"><p class="lead">For a brief instruction and a few provided examples please head to the how to section.</p></div>
+                    <p class="lead">Welcome to Ferris State Machine Learning Insight tool. This site is designed to help you find resources for your research as well as finding a machine learning framework to use with the new data. Currently we can handle minimal data tasks, but soon there will be access to machine learning tools through this site.</p>
                 </div>
 
             </div>
         </section>
-                                <img class="img-fluid" src="./assets/Images/ML_image.jpg" alt=""/>
+                                <img class="img-fluid" src="./assets/Images/tensorFlowAbout.PNG" alt=""/>
     
         <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
         <div class="scroll-to-top d-lg-none position-fixed">

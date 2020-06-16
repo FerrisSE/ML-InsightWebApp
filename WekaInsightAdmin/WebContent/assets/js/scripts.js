@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 	//listDatas();
-	listAttributes();
+	//listAttributes();
 	
 	view = getQueryStringVariable('view');
 	
@@ -200,38 +200,38 @@ function getResult(){
 
 	});
 }
-
-function listAttributes(){
-
-	$.ajax({
-		url: "../WekaInsightAPIs/rest/attributes/listvisible/",
-		type: 'GET',
-		dataType : "json",
-        contentType: "application/json",
-	}).fail(function(response) {
-
-    }).done(function(response) {
-    	
-    	$.each(response, function(key, value) {
-    		if(value.hasOwnProperty('attributes')){
-    			
-    			attributes = "<li class='nav-item dropdown'><a class='nav-link dropdown-toggle' href='"+value.attributeURL+"' role='button' data-toggle='dropdown'>"+value.attributeName+"</a>";
-    			attributes += "<div class='dropdown-menu'>";
-    			
-    			$.each(value.attributes, function(k, v){
-	    			attributes += "<a class='dropdown-item' href='index.jsp?view=datasbycat&attributeID="+v.attributeID+"'>"+v.attributeName+"</a>";
-    			});
-    	
-    			attributes += "</div></li>";
-    			
-    		}else{
-
-    			attributes = "<li class='nav-item'><a class='nav-link' href='"+value.attributeURL+"'>"+value.attributeName+"</a></li>";
-    		}
-    		$("#attributeUL").append(attributes);
-    	});
-	});
-}
+//
+//function listAttributes(){
+//
+//	$.ajax({
+//		url: "../WekaInsightAPIs/rest/attributes/listvisible/",
+//		type: 'GET',
+//		dataType : "json",
+//        contentType: "application/json",
+//	}).fail(function(response) {
+//
+//    }).done(function(response) {
+//    	
+//    	$.each(response, function(key, value) {
+//    		if(value.hasOwnProperty('attributes')){
+//    			
+//    			attributes = "<li class='nav-item dropdown'><a class='nav-link dropdown-toggle' href='"+value.attributeURL+"' role='button' data-toggle='dropdown'>"+value.attributeName+"</a>";
+//    			attributes += "<div class='dropdown-menu'>";
+//    			
+//    			$.each(value.attributes, function(k, v){
+//	    			attributes += "<a class='dropdown-item' href='index.jsp?view=datasbycat&attributeID="+v.attributeID+"'>"+v.attributeName+"</a>";
+//    			});
+//    	
+//    			attributes += "</div></li>";
+//    			
+//    		}else{
+//
+//    			attributes = "<li class='nav-item'><a class='nav-link' href='"+value.attributeURL+"'>"+value.attributeName+"</a></li>";
+//    		}
+//    		$("#attributeUL").append(attributes);
+//    	});
+//	});
+//}
 
 function getAttribute(attributeID){
 

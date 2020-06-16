@@ -34,6 +34,13 @@
 	<%@include file=".\includes\About.jsp" %>
 			<%}else if(view.equals("upload_page")){ %>
 	<%@include file=".\includes\upload_page.jsp" %>
+			<%}else if(view.equals("topdataset")){ %>
+	<%@include file=".\includes\topDataset.jsp" %>
+				<%}else if(view.equals("frameworks")){ %>
+	<%@include file=".\includes\topFrameworks.jsp" %>
+				<%}else if(view.equals("projects")){ %>
+	<%@include file=".\includes\projectsSENG.jsp" %>
+	
 		<%}else{ %>
 		<%@include file=".\includes\dashboard.jsp" %>
 		<%} %>
