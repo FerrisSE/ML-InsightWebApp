@@ -1,56 +1,68 @@
+$(document).ready(function(){
+	//listArticles();
+	var attribute;
+});
 
-function listAttributes(){
+function listArticles(){
 	
 	$.ajax({
-		url: "../WekaInsightAPIs/rest/attributes/list/",
+		url: "../WekaInsightAPIs/rest/articles/list/",
 		type: 'GET',
 		dataType : "json",
         contentType: "application/json",
 	}).fail(function(response) {
 		console.log(JSON.stringify(response));
+
     }).done(function(response){
 
     	$.each(response, function(key, value) {
-    		var lstResults = "<tr><td><a href ='./index.jsp?view=attedit&edit="+value.attributeID+"' data-toggle='tooltip' title='View & Edit'><span class='fa fa-pencil-alt fa-fw' aria-hidden='true'></span><span class='sr-only'>View and Edit</span></a>" +
-    		"<a href = '#' onclick=deleteAttributeModal('"+value.attributeID+"','"+encodeURIComponent(value.attributeName)+"') data-toggle='tooltip' title='Delete'><span class='fa fa-trash-alt' aria-hidden='true'></span><span class='sr-only'>Delete</span></a></td>" +
-    		"<td>"+value.attributeID+"</td><td>"+value.attributeName+"</td><td>"+value.attributeURL+"</td><td>"+value.attributeOrder+"</td>"+
-    		"<td>"+value.attributeVisible+"</td></tr>";
     		
+//    		var lstResults = "<td>"+value.attribute1+"</td><td>"+value.attribute2+"</td><td>"+value.attribute3+"</td><td>"+value.attribute4+"</td><td>"+value.attribute5+"</td></tr>";
+//    		
+//    		
     		
-    		if($("#attributeBody").text()){
-    		document.getElementById('attributeBody').innerHTML += lstResults;
+    		var lstResults = "<tr><td><a href ='./index.jsp?view=articleedit&edit="+value.attribute1+"' data-toggle='tooltip' title='View & Edit'><span class='fa fa-pencil-alt fa-fw' aria-hidden='true'></span><span class='sr-only'>View and Edit</span></a>"+
+    		"<a href = '#' onclick=deleteCategoryModal('"+value.attribute1+"','"+encodeURIComponent(value.attribute1)+"') data-toggle='tooltip' title='Delete'><span class='fa fa-trash-alt' aria-hidden='true'></span><span class='sr-only'>Delete</span></a></td>" +
+            "<td>"+value.attribute1+"</td><td>"+value.attribute2+"</td><td>"+value.attribute3+"</td><td>"+value.attribute4+"</td><td>"+value.attribute5+"</td></tr>";
+    		
+
+    		
+    		if($("#postBody").text()){
+    		document.getElementById('postBody').innerHTML += lstResults;
     		}
     	});
 	});
 }
 
-function addAttribute(){
-	var attributeName = $("#attributeName").val();
-	var attributeURL = $("#attributeURL").val();
-	var attributeOrder = $("#attributeOrder").val();
-	var attributeVisible = $("#attributeVisible").val();
-	var parms = {attributeName:attributeName, attributeURL:attributeURL, attributeOrder:attributeOrder, attributeVisible:attributeVisible}
+function listResult(){
 	
 	$.ajax({
-		url: "./rest/attributes/add/",
-		type: 'POST',
-		dataType : "json",
-        contentType: "application/json",
-        data: JSON.stringify(parms)
+		url: "../WekaInsightAPIs/rest/attributes/results/",
+		type: 'GET',
+		dataType : "text",
+        contentType: "text/plain",
 	}).fail(function(response) {
 		console.log(JSON.stringify(response));
 
     }).done(function(response){
-
-    	window.location.reload(true);
+	
+//    		var lstResults = "<tr><td><a href ='./index.jsp?view=articleedit&edit="+value.attribute1+"' data-toggle='tooltip' title='View & Edit'><span class='fa fa-pencil-alt fa-fw' aria-hidden='true'></span><span class='sr-only'>View and Edit</span></a>"+
+//    		"<a href = '#' onclick=deleteCategoryModal('"+value.attribute1+"','"+encodeURIComponent(value.attribute1)+"') data-toggle='tooltip' title='Delete'><span class='fa fa-trash-alt' aria-hidden='true'></span><span class='sr-only'>Delete</span></a></td>" +
+//            "<td>"+value.attribute1+"</td><td>"+value.attribute2+"</td><td>"+value.attribute3+"</td><td>"+value.attribute4+"</td><td>"+value.attribute5+"</td></tr>";
+//    		
+    		var lstResults = "<a>test</a>"
+    		
+    		if($("#postBody").text()){
+    		document.getElementById('postBody').innerHTML += lstResults;
+    		}
 	});
-}	
+}
 
 
-function getAttribute(attributeID){
+function getArticle(){
 	
 	$.ajax({
-		url: "../WekaInsightAdmin/rest/attributes/"+attributeID,
+		url: "../WekaInsightAPIs/rest/articles/",
 		type: 'GET',
 		dataType : "json",
         contentType: "application/json",
@@ -59,24 +71,31 @@ function getAttribute(attributeID){
 
     }).done(function(response){
     	
-    	$("#attributeName").val(response.attributeName);
-    	$("#attributeURL").val(response.attributeURL);
-    	$("#attributeOrder").val(response.attributeOrder);
-    	$("#attributeVisible").val(response.attributeVisible);
+    	$("#attribute1").val(response.attribute1);
+    	$("#attribute2").val(response.attribute2);
+    	$("#attribute3").val(response.attribute3);
+    	$("#attribute4").val(response.attribute4);
+    	$("#attribute5").val(response.attribute5);
 
 	});
 }
 
-function updateAttribute(){
-	var attributeName = $("#attributeName").val();
-	var attributeURL = $("#attributeURL").val();
-	var attributeOrder = $("#attributeOrder").val();
-	var attributeVisible = $("#attributeVisible").val();
+
+
+
+
+
+function addArticle(){
+	var attribute1 = $("#attribute1").val();
+	var attribute2 = $("#attribute2").val();
+	var attribute3 = $("#attribute3").val();
+	var attribute4 = $("#attribute4").val();
+	var attribute5 = $("#attribute5").val();
 	
-	var parms = {attributeID:attributeID, attributeName:attributeName, attributeURL:attributeURL, attributeOrder:attributeOrder, attributeVisible:attributeVisible}
+	var parms = { attribute1:attribute1, attribute2:attribute2, attribute3:attribute3, attribute4:attribute4, attribute5:attribute5}
 	
 	$.ajax({
-		url: "./rest/attributes/update/",
+		url: "./rest/articles/add/",
 		type: 'POST',
 		dataType : "json",
         contentType: "application/json",
@@ -86,36 +105,65 @@ function updateAttribute(){
 
     }).done(function(response){
 
-    	window.location = "./index.jsp?view=attributelist"
+    	alert(response.message);
+    	window.location = "./index.jsp?view=articlelist";
+
 	});
+}	
+
+function updateArticle(){
+	var attribute1 = $("#attribute1").val();
+	var attribute2 = $("#attribute2").val();
+	var attribute3 = $("#attribute3").val();
+	var attribute4 = $("#attribute4").val();
+	var attribute5 = $("#attribute5").val();
 	
+	var parms = { attribute1:attribute1, attribute2:attribute2, attribute3:attribute3, attribute4:attribute4, attribute5:attribute5}
+	
+	$.ajax({
+		url: "./rest/articles/update/",
+		type: 'POST',
+		dataType : "json",
+        contentType: "application/json",
+        data: JSON.stringify(parms)
+	}).fail(function(response) {
+		console.log(JSON.stringify(response));
+
+    }).done(function(response){
+
+    	alert(response.message);
+    	window.location = "./index.jsp?view=articlelist";
+	});
 }
 
-function deleteAttributeModel(attributeID,attributeName){
-		$("#deleteAttributeModel").modal('show');
+function deleteArticleModal(attribute){
 		
-		$("#attributeID").text(attributeID);
-		$("#attributeName").text(decodeURIComponent(attributeName));
+		console.log(attribute);
+		$("#deleteArticleModal").modal('show');
+		
+		$("#attNum").text(decodeURIComponent(attribute));
 		
 	}
+
 	
-	function deleteAttribute(){
+	function deleteArticle(){
 		
-		var attributeID = $('#attributeID').text();
+		var attribute = $('#attNum').val();
 		
-		var parms = {attributeID:attributeID};
+		var parms = {attribute:attribute};
 		
 		$.ajax({
-			url: "./rest/attributes/delete/",
+			url: "./rest/articles/delete/",
 			type: 'POST',
 			dataType : "json",
 	        contentType: "application/json",
 	        data: JSON.stringify(parms)
 		}).fail(function(response) {
 			console.log(JSON.stringify(response));
-
+			console.log("Failed Attribute delete");
 	    }).done(function(response){
-
-	    	window.location = "./index.jsp?view=attributelist"
+	    	console.log("Attribute tried to delete");
+	    	window.location = "./index.jsp?view=articlelist"
 		});
 	}
+	

@@ -1,28 +1,39 @@
-  <h1 class="page-header">File Name</h1>
+         <!-- About Section-->
+        <section class="page-section bg-primary text-white mb-0" id="about">
+            <div class="container">
+                <!-- About Section Heading-->
+                <h2 class="page-section-heading text-center text-uppercase text-white">Prediction Models and Data Insights</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                </div>
+                </section>
+ 
+ 
   
 		<input type="file" name="filename" id="filename">
 <!-- 		<button id="upload_data" value="Upload">upload</button> -->
-		<div class="csv"></div>
+<!-- 		<div class="csv"></div> -->
 
   <div class="form-group">
 
-
+<select name="category">
+    <option value="category_id">Select a Framework</option>
+    <option href="#wekaAPI" value="category_id">wekaAPI</option>
+    <option href="#TensorFlow" value="category_id">TensorFlow</option>
+        <option href="#Sci-kitLearn" value="category_id">Sci-kit Learn</option>
+</select>
 <div class="dropdown">
-  <button onclick="build_function()" class="dropbtn">Build Prediction Model</button>
-  <div id="buildDropdown" class="dropdown-content">
-    <input type="text" id="buildInput" onkeyup="filterFunction()">
-    <a href="#wekaAPI">wekaAPI</a>
-    <a href="#TensorFlow">TensorFlow</a>
-    <a href="#Sci-kitLearn">Sci-kit Learn</a>
-
-  </div>
+  <button class="dropbtn">Build Prediction Model</button>
 </div>
 <!-- 	<span> -->
 <!--      	<button class="btn btn-primary"  type="button" onclick="listResult()" id="listResult" data-toggle="tooltip" title="List Result">Build Prediction Model</button> -->
 <!-- 	</span> -->
 
  	<span>
-     	<button class = "btn btn-link" type="button" onclick="window.location.reload(true)" data-toggle="tooltip" title="Cancels adding the Article, and refreshes this webpage.">Cancel</button>
+     	<button class = "btn btn-link" type="button" onclick="window.location.reload(true)" data-toggle="tooltip" title="Cancels adding the CSV file, and refreshes this webpage.">Cancel</button>
    	</span>
 
 </div>   
@@ -503,10 +514,10 @@ document.getElementById("val").innerHTML = "Average Value = " +avgVal;
 
 
   <!-- Editable table -->
-<div class="card">
-  <div class="card-body">
+<div class="card"style="width:100%">
+  <div class="card-body" >
   <div class="well">
-    <div id="table_attributes" class="table-editable" style="height:500px;width:1600px;overflow: scroll;">
+    <div id="table_attributes" class="table-editable" style="height:95%; overflow: scroll;">
       <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i
             class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span>
       <table class="table table-bordered table-responsive-md table-striped text-center">

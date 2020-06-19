@@ -10,15 +10,21 @@
            </div>
         </section>
          <section class="page-section bg-white text-black mb-0" id="about">
-            <div class="container">
-                <h4>Machine learning Insights made easy by the Ferris State Software Engineering Lab</h4>
+            <div class="container" style="text-align: center;width:50%">
+                <h4>Machine Learning Insights Made Easy By</h4>
+                <h4>The Ferris State Software Engineering Lab</h4>
                 <p>For instruction on how to use it please click "how to" in the navigation sidebar.</p>
                 <!-- About Section Content-->
                 <div class="row">
-                    <div class="col-lg-4 mr-auto"><p class="lead">This tool aims at extracting insights from your data using machine learning features.</p></div>
-                    <div class="col-lg-4 mr-auto"><p class="lead">This project was supported in part by Faculty Research grant at Ferris State Univeristy implemented by: Anthony scott, 
-                    digital media software engineering, supervised by dr. Mohamed abusharkh dr Yong Xu</p></div>
-
+                    <div><p class="lead">
+                    <p>This project was supported in part by Faculty Research grant at Ferris State Univeristy.</p>
+                    <ul style="list-style: none;">
+                    <li>Implemented by:</li>
+                    <li> <a href="mailto:scotta42@ferris.edu">Anthony Scott</a><a>:	Senior in Digital Media Software Engineering. </a></li>
+                      Supervised by: 
+                      <li><a href="mailto:MohamedAbusharkh@ferris.edu">Dr. Mohamed Abusharkh</a><a>:	Digital Media Software Engineering Instructor, School of Digital Media</a></li>
+                      <li><a href="mailto:YongXu@ferris.edu">Dr. Yong Xu</a><a>:	Marketing and College of Business Instructor</a></li>
+					</ul>
                 </div>
 
             </div>

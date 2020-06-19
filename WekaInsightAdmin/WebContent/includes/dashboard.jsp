@@ -82,15 +82,38 @@
                 </section>
              <section class="page-section bg-white text-black mb-0" id="about">
             <div class="container">
-                <!-- About Section Content-->
+                     <!-- About Section Content-->
                 <div class="row">
-                    <p class="lead">Welcome to Ferris State Machine Learning Insight tool. This site is designed to help you find resources for your research as well as finding a machine learning framework to use with the new data. Currently we can handle minimal data tasks, but soon there will be access to machine learning tools through this site.</p>
+                    <h6>Welcome to Ferris State Machine Learning Insight tool. This site is designed to help you find resources for your research as well as finding a machine learning framework to use with the new data. Currently we can handle minimal data tasks, but soon there will be access to machine learning tools through this site.</h6>
                 </div>
 
             </div>
-        </section>
-                                <img class="img-fluid" src="./assets/Images/tensorFlowAbout.PNG" alt=""/>
-    
+        </section>		
+        <div >
+        <center>
+        <video class="center" src = "./assets/video/ML_Insights_welcome.mp4" controls width="580" heigth="440" type="video/mp4"></video>
+		</center>
+        </div>	
+        <hr>
+	<!--<a>You can always connect with us and we can get you started!</a><a href="mailto:MohamedAbusharkh@ferris.edu">Dr. Mohamed Abusharkh</a> -->
+                  <div style="text-center">
+                  <center>
+                          <a href="./index.jsp?view=predictionModel">
+                        	<input type="image" class="img-fluid" style="height:225px;width:20%"  src="./assets/Images/dataInsights.png" alt=""/>
+                          </a>
+                          <a href="./index.jsp?view=topdataset">
+                                                  	<input type="image" class="img-fluid" style="height:225px;width:20%"  src="./assets/Images/dataSets.png" alt=""/>
+						</a>
+												<a href="https://www.ferris.edu/HTMLS/statewide/machine-learning-certificate.htm">
+                        	<input type="image" style="height:225px;width:25%" class="img-fluid"  src="./assets/Images/mlCertificate.jpg" alt=""/>
+                          </a>
+                         <a href="mailto:MohamedAbusharkh@ferris.edu">
+                        	<input type="image" class="img-fluid" style="height:225px;width:20%"  src="./assets/Images/contactUs.png" alt=""/>
+                          </a>
+                          </center>
+			</div>
+
+    <hr>
         <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
         <div class="scroll-to-top d-lg-none position-fixed">
             <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i class="fa fa-chevron-up"></i></a>

@@ -8,10 +8,21 @@
   color: red;
 }
 </style>
+
+        <section class="page-section bg-primary text-white mb-0" id="about">
+            <div class="container">
+                <!-- About Section Heading-->
+                <h2 class="page-section-heading text-center text-uppercase text-white">How to use our site tools</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                </div>
+                </section>
+
         <section class="page-section" id="contact">
             <div class="container">
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">How to use our site tools</h2>
-                
 
                 <div class="row">
                     <div class="col-lg-8 mx-auto">

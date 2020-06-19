@@ -18,7 +18,6 @@
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-light">
                     <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                     <div class="divider-custom-line"></div>
                 </div>
                 </div>
@@ -28,7 +27,7 @@
                 <!-- About Section Content-->
                 <div class="row">
                     <div >
-                    <a class="lead">Need a place to start? These frameworks should get you going in the right direction</a>
+                    <a class="lead">Need a tool to start developing your models? these frameworks are open source and offer handy tools and do not need expert programming skills just some familiarity!</a>
                     <br>
                     <a class="lead">Hover over the images to read more on that framework, or click it to go to their site.</a>
                     
@@ -61,7 +60,7 @@
                             <div class="myDIV">
 
                             <form action="https://www.tensorflow.org/learn">
-							    <input  src="https://d1jnx9ba8s6j9r.cloudfront.net/blog/wp-content/uploads/2019/08/Tensorflow-Machine-Learning-Tools-Edureka-360x300.png"  type="image" />
+							    <input style="height:200px;width:260px" src="https://d1jnx9ba8s6j9r.cloudfront.net/blog/wp-content/uploads/2019/08/Tensorflow-Machine-Learning-Tools-Edureka-360x300.png"  type="image" />
 							</form>
 							</div>
 							<div class="hide" style="height:150px;width:365px">TensorFlow is a free and open-source software library for dataflow and differentiable programming across a range of tasks. It is a symbolic math library, and is also used for machine learning applications such as neural networks. <a href="https://en.wikipedia.org/wiki/TensorFlow">Wikipedia</a></div>
@@ -73,11 +72,11 @@
 <!--                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div> -->
                             </div>
                             <div class="myDIV">
-                            <form action="https://pypi.org/project/Theano/">
-							    <input src="https://d1jnx9ba8s6j9r.cloudfront.net/blog/wp-content/uploads/2019/07/1280px-Theano_logo.svg_-300x69.png"  type="image" />
+                            <form action="https://dotnet.microsoft.com/learn/ml-dotnet/what-is-mldotnet">
+							    <input src="https://devblogs.microsoft.com/dotnet/wp-content/uploads/sites/10/2019/08/mlnet-icon.png"  type="image" />
 							</form>
 							</div>
-								<div class="hide" style="height:150px;width:365px">Theano is a Python library and optimizing compiler for manipulating and evaluating mathematical expressions, especially matrix-valued ones. In Theano, computations are expressed using a NumPy-esque syntax and compiled to run efficiently on either CPU or GPU architectures. <a href="https://en.wikipedia.org/wiki/Theano_(software)">Wikipedia</a></div>
+								<div class="hide" style="height:150px;width:365px">ML.NET is a free software machine learning library for the C# and F# programming languages. It also supports Python models when used together with NimbusML.  <a href="https://en.wikipedia.org/wiki/ML.NET">Wikipedia</a></div>
 
 						</div>
                     </div>
@@ -92,7 +91,7 @@
 							    <input  src="https://d1jnx9ba8s6j9r.cloudfront.net/blog/wp-content/uploads/2019/08/Scikit-Learn-Machine-Learning-Tools-Edureka-334x180.png"  type="image" />
 							</form>
 							</div>
-								<div class="hide" style="height:150px;width:365px">Scikit-learn (formerly scikits.learn and also known as sklearn) is a free software machine learning library for the Python programming language. It features various classification, regression and clustering algorithms including support vector machines, random forests, gradient boosting, k-means and DBSCAN, and is designed to interoperate with the Python numerical and scientific libraries NumPy and SciPy. <a href="https://en.wikipedia.org/wiki/Scikit-learn">Wikipedia</a><hr></div>
+								<div class="hide" style="height:150px;width:365px">Scikit-learn is a free software machine learning library for the Python programming language. It features various classification, regression and clustering algorithms... <a href="https://en.wikipedia.org/wiki/Scikit-learn">Wikipedia</a><hr></div>
 						</div>
                     </div>
                     <div class="col-md-6 col-lg-4 mb-5 mb-md-0">
@@ -102,11 +101,11 @@
 <!--                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div> -->
                             </div>
                             <div class="myDIV">
-                            <form action="https://caffe.berkeleyvision.org/">
-							    <input  src="https://d1jnx9ba8s6j9r.cloudfront.net/blog/wp-content/uploads/2019/07/caffe-150x52.png"  type="image" />
+                            <form action="https://www.cs.waikato.ac.nz/ml/weka/">
+							    <input  src="https://waikato.github.io/weka-site/images/weka.png"  type="image" />
 							</form>
 					     </div>
-					     								<div class="hide" style="height:150px;width:365px">CAFFE is a deep learning framework, originally developed at University of California, Berkeley. It is open source, under a BSD license. It is written in C++, with a Python interface. <a href="https://en.wikipedia.org/wiki/Caffe_(software)">Wikipedia</a><br></div>
+					    		<div class="hide" style="height:150px;width:365px">Waikato Environment for Knowledge Analysis, developed at the University of Waikato, New Zealand. It is free software licensed under the GNU General Public License.<a href="https://en.wikipedia.org/wiki/Weka_(machine_learning)">Wikipedia</a><br></div>
 					     </div>
                     </div>
                     <div class="col-md-6 col-lg-4">

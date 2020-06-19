@@ -1,7 +1,5 @@
 $(document).ready(function(){
 
-	//listDatas();
-	//listAttributes();
 	
 	view = getQueryStringVariable('view');
 	
@@ -9,26 +7,9 @@ $(document).ready(function(){
 		dataID = getQueryStringVariable('edit');
 		getData(dataID);
 	}
-	if(view == 'navedit'){
-		attributeID = getQueryStringVariable('edit');
-		getNavigation(attributeID);
-	}
-	if(view == 'catedit'){
-		attributeID = getQueryStringVariable('edit');
-		getAttribute(attributeID);
-	}
-	if(view == 'useredit'){
-		userID = getQueryStringVariable('edit');
-		getUser(userID);
-	}
 	if(view == 'data'){
 		dataID = getQueryStringVariable('dataID');
 		getData(dataID);
-	}
-	if(view == 'datasbycat'){
-		attributeID = getQueryStringVariable('attributeID');
-		getAttribute(attributeID);
-		listDatasByAttribute(attributeID);
 	}
 });
 
@@ -232,98 +213,6 @@ function getResult(){
 //    	});
 //	});
 //}
-
-function getAttribute(attributeID){
-
-	$.ajax({
-		url: "../WekaInsightAPIs/rest/attributes/list/"+attributeID,
-		type: 'GET',
-		dataType : "json",
-        contentType: "application/json",
-	}).fail(function(response) {
-
-    }).done(function(response) {
-    	
-		Console.log("attribute: "+attributeID);
-
-    	var heading = "<h1 class='my-4'>"+response.attributeName+"</h1><hr>"+
-    		    	"<div class='row'><div><img class='img-responsive img-thumbnail img-rounded artImage' src='./uploads/"+response.attributeImage+"'>"+
-    		    	response.attributeContent+"</div></div><hr>";
-    		    	
-    		    	$("#dataPageHeading").append(heading);
-
-    				Console.log("attribute: "+attributeID);
-
-    	});
-}
-
-function listDatasByAttribute(attributeID){
-
-	$.ajax({
-		url: "../WekaInsightAPIs/rest/datas/listByAttribute/"+attributeID,
-		type: 'GET',
-		dataType : "json",
-        contentType: "application/json",
-	}).fail(function(response) {
-
-    }).done(function(response) {
-    	
-    	$.each(response, function(key, value) {
-    		console.log("attribute: "+attributeID);
-
-    		
-    		
-    		var blogPosts = "<div class='card mb-4'>" +
-            "<img id='imageId_"+value.dataAuthorID+"' class='card-img-top' src='./uploads/"+value.dataImage+"' alt='Card image cap'>" +
-            "<div class='card-body'>" +
-              "<h2 class='card-title'>" + value.dataTitle + "</h2>" +
-              "<p class='card-text'>" + value.dataContent + "</p>" +
-              "<a href='./index.jsp?view=data&dataID="+value.dataID+"' class='btn btn-primary'>Read More &rarr;</a>" +
-            "</div>" +
-            "<div class='card-footer text-muted'>" +
-              "Posted on " +value.dataCreateDate+" "
-              "<a id='usernameId_"+value.dataAuthorID+"' href='#'>"+value.dataAuthorID+"</a>" +
-            "</div>" +
-          "</div>";
-    	
-    		$("#blogBody").append(blogPosts);
-    		
-    	});
-	});
-}
-
-
-function listNavigations(){
-
-	$.ajax({
-		url: "../WekaInsightAPIs/rest/navigations/listvisible/",
-		type: 'GET',
-		dataType : "json",
-        contentType: "application/json",
-	}).fail(function(response) {
-
-    }).done(function(response) {
-    	
-    	$.each(response, function(key, value) {
-    		if(value.hasOwnProperty('attributes')){
-    			
-    			navigations = "<li class='nav-item dropdown'><a class='nav-link dropdown-toggle' href='"+value.navigationURL+"' role='button' data-toggle='dropdown'>"+value.navigationName+"</a>";
-    			navigations += "<div class='dropdown-menu'>";
-    			
-    			$.each(value.attributes, function(k, v){
-	    			navigations += "<a class='dropdown-item' href='index.jsp?view=datasbycat&attributeID="+v.attributeID+"'>"+v.attributeName+"</a>";
-    			});
-    	
-    			navigations += "</div></li>";
-    			
-    		}else{
-
-    			navigations = "<li class='nav-item'><a class='nav-link' href='"+value.navigationURL+"'>"+value.navigationName+"</a></li>";
-    		}
-    		$("#navigationUL").append(navigations);
-    	});
-	});
-}
 
 
 

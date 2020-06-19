@@ -10,7 +10,12 @@
           <span>Dashboard</span>
         </a>
       </li>
-                  <li class="nav-item">
+       <li class="nav-item">
+        <a class="nav-link" href="./index.jsp?view=predictionModel">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Prediction Model</span></a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="./index.jsp?view=topdataset">
           <i class="fas fa-fw fa-table"></i>
           <span>Top Data set sites</span></a>
@@ -20,27 +25,21 @@
           <i class="fas fa-fw fa-table"></i>
           <span>Top Machine Learning Frameworks</span></a>
       </li>
-                   <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link" href="./index.jsp?view=projects">
           <i class="fas fa-fw fa-table"></i>
-          <span>SENG Machine Learning Projects</span></a>
+          <span>Machine Learning At Ferris</span></a>
       </li>
-            <li class="nav-item">
-        <a class="nav-link" href="./index.jsp?view=articlelist">
-          <i class="fas fa-fw fa-table"></i>
-          <span>prediction model</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="./index.jsp?view=howTo">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>How To</span></a>
       </li>
-            <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link" href="./index.jsp?view=about">
           <i class="fas fa-fw fa-table"></i>
           <span>About</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="./index.jsp?view=charts">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>How To</span></a>
-      </li>
-
     </ul>
 
  

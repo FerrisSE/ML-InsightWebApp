@@ -18,7 +18,6 @@
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-light">
                     <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                     <div class="divider-custom-line"></div>
                 </div>
                 </div>
@@ -27,9 +26,9 @@
             <div class="container">
                 <!-- About Section Content-->
                 <div class="row">
-                    <div ><a class="lead">If you need more data for your research, then these sites can help you find more.</a>
+                    <div ><a class="lead">The following sites are good sources if you are interested in finding datasets for your specific field</a>
                     <br>
-                    <a class="lead">Hover over the images to read more about that site, or click it to go there.</a>
+                    <a class="lead">Hover over the images to read more about that site, or click to be redirected.</a>
                     
                     <a class="lead"></a>
                     </div>
