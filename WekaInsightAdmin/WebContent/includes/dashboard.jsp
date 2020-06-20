@@ -102,14 +102,15 @@
                         	<input type="image" class="img-fluid" style="height:225px;width:20%"  src="./assets/Images/dataInsights.png" alt=""/>
                           </a>
                           <a href="./index.jsp?view=topdataset">
-                                                  	<input type="image" class="img-fluid" style="height:225px;width:20%"  src="./assets/Images/dataSets.png" alt=""/>
+                           	<input type="image" class="img-fluid" style="height:225px;width:20%"  src="./assets/Images/dataSets.png" alt=""/>
 						</a>
-												<a href="https://www.ferris.edu/HTMLS/statewide/machine-learning-certificate.htm">
-                        	<input type="image" style="height:225px;width:25%" class="img-fluid"  src="./assets/Images/mlCertificate.jpg" alt=""/>
-                          </a>
-                         <a href="mailto:MohamedAbusharkh@ferris.edu">
+						    <a href="mailto:MohamedAbusharkh@ferris.edu">
                         	<input type="image" class="img-fluid" style="height:225px;width:20%"  src="./assets/Images/contactUs.png" alt=""/>
                           </a>
+							<a href="https://www.ferris.edu/HTMLS/statewide/machine-learning-certificate.htm">
+                        	<input type="image" style="height:225px;width:25%" class="img-fluid"  src="./assets/Images/mlCertificate.jpg" alt=""/>
+                          </a>
+
                           </center>
 			</div>
 

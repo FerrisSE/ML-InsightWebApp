@@ -73,6 +73,7 @@
 		<input type="file" name="filename" id="filename">
 <!-- 		<button id="upload_data" value="Upload">upload</button> -->
 <!-- 		<div class="csv"></div> -->
+<button onclick="myFunction()">About CSV FIles</button>
 
   <div class="form-group">
 
@@ -131,8 +132,15 @@
 
 </th>
 <th>
-        <video class="center" src = "./assets/video/ML_Insight_FSU_Prediction_Tut.mp4" controls width="580" heigth="440" type="video/mp4"></video>
 
+
+
+<div id="clickDIV" style="display:none">
+        <video class="center" src = "./assets/video/CSV_About.mp4" controls width="580" heigth="440" type="video/mp4"></video>
+
+</div>
+
+        <video class="center" src = "./assets/video/ML_Insight_FSU_Prediction_Tut.mp4" controls width="580" heigth="440" type="video/mp4"></video>
 </th>
 </tr>
 </table>
@@ -153,6 +161,15 @@ function attribute_selection() {
 	}
 function Statistic_tools() {
 	  document.getElementById("statDropdown").classList.toggle("show");
+	}
+	
+function myFunction() {
+	  var x = document.getElementById("clickDIV");
+	  if (x.style.display === "none") {
+	    x.style.display = "block";
+	  } else {
+	    x.style.display = "none";
+	  }
 	}
 	
 
